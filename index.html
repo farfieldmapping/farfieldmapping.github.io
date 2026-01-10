@@ -455,6 +455,7 @@
               addLabel(layer, i);
               i++;
         });
+			/*
 		var i = 0;
         layer_Plots_1.eachLayer(function(layer) {
             var context = {
@@ -467,7 +468,7 @@
               layer.added = true;
               addLabel(layer, i);
               i++;
-        });
+        });*/
         map.addControl(new L.Control.Search({
             layer: layer_LotLabels_2,
             initial: false,
@@ -478,15 +479,15 @@
         } else {
             document.getElementsByClassName('search-button')[1].className += ' fa fa-binoculars';
         }
-        resetLabels([layer_Roads_0,layer_Plots_1,layer_LotLabels_2]);
+        resetLabels([layer_Roads_0,layer_LotLabels_2]);
         map.on("zoomend", function(){
-            resetLabels([layer_Roads_0,layer_Plots_1,layer_LotLabels_2]);
+            resetLabels([layer_Roads_0,layer_LotLabels_2]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Roads_0,layer_Plots_1,layer_LotLabels_2]);
+            resetLabels([layer_Roads_0,layer_LotLabels_2]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Roads_0,layer_Plots_1,layer_LotLabels_2]);
+            resetLabels([layer_Roads_0,layer_LotLabels_2]);
         });
         </script>
         <script>
