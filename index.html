@@ -455,13 +455,13 @@
               addLabel(layer, i);
               i++;
         });
-		 var i = 0;
+		var i = 0;
         layer_Plots_1.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Plot_Name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Plot_Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LotLabels_2'});
+            layer.bindTooltip((layer.feature.properties['Plot_Name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Plot_Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Plots_1'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
