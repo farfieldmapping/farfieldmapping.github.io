@@ -158,6 +158,68 @@
                 map.fitBounds(bounds_group.getBounds());
             }
         }
+		function pop_Driveways_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+			function style_Driveways_4_0() {
+            return {
+                pane: 'pane_Driveways_4',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,226,223,1.0)',
+                interactive: false,
+            }
+        }
+        function style_Driveways_4_1() {
+            return {
+                pane: 'pane_Driveways_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Driveways_4');
+        map.getPane('pane_Driveways_4').style.zIndex = 401;
+        map.getPane('pane_Driveways_4').style['mix-blend-mode'] = 'normal';
+        var layer_Driveways_4 = new L.geoJson.multiStyle(json_Driveways_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Driveways_4',
+            layerName: 'layer_Driveways_4',
+            pane: 'pane_Driveways_4',
+            onEachFeature: pop_Driveways_4,
+            styles: [style_Driveways_4_0,style_Driveways_4_1,]
+        });
+        bounds_group.addLayer(layer_Driveways_4);
+        map.addLayer(layer_Driveways_4);
         function pop_Roads_0(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -416,68 +478,7 @@
         bounds_group.addLayer(layer_CemeteryBoundary_3);
         map.addLayer(layer_CemeteryBoundary_3);
 		
-			function pop_Driveways_4(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-			function style_Driveways_4_0() {
-            return {
-                pane: 'pane_Driveways_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(230,226,223,1.0)',
-                interactive: false,
-            }
-        }
-        function style_Driveways_4_1() {
-            return {
-                pane: 'pane_Driveways_4',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        map.createPane('pane_Driveways_4');
-        map.getPane('pane_Driveways_4').style.zIndex = 401;
-        map.getPane('pane_Driveways_4').style['mix-blend-mode'] = 'normal';
-        var layer_Driveways_4 = new L.geoJson.multiStyle(json_Driveways_4, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Driveways_4',
-            layerName: 'layer_Driveways_4',
-            pane: 'pane_Driveways_4',
-            onEachFeature: pop_Driveways_4,
-            styles: [style_Driveways_4_0,style_Driveways_4_1,]
-        });
-        bounds_group.addLayer(layer_Driveways_4);
-        map.addLayer(layer_Driveways_4);
+		
         var overlaysTree = [
             {label: '<img src="legend/CemeteryBoundary_3.png" /> Cemetery Boundary', layer: layer_CemeteryBoundary_3},
             {label: 'Lot Labels', layer: layer_LotLabels_2},
