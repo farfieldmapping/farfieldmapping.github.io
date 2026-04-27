@@ -46,6 +46,9 @@
         <script src="data/CemeteryBoundary_3.js"></script>
 	    <script src="data/Driveways_4.js"></script>
 		<script src="data/Buildings_5.js"></script>
+        <script src="data/PlotTable_6.js"></script>
+        <script src="js/plot-list.js"></script>
+        <script src="js/plot-info.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -57,14 +60,19 @@
               });
             } else {
               highlightLayer.setStyle({
-                fillColor: 'rgba(255, 255, 0, 1.00)',
+                //color: 'rgba(255, 165, 0, 1)',
+                //weight: 4,
+                fillColor: 'rgba(255,255,0,0.45)',
                 fillOpacity: 1
               });
-            }
+            }//highlightLayer.bringToFront();
         }
+        
         var map = L.map('map', {
-            zoomControl:false, maxZoom:26, minZoom:19
+            zoomControl:false, maxZoom:23, minZoom:19
         })
+        map.setMaxBounds([[43.88808,-72.24951],[43.88451,-72.25342]]);
+
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a> &middot; <a href="https://farfieldmapping.com">Far Field Mapping</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -140,10 +148,10 @@
         };
         title.addTo(map);
         var zoomControl = L.control.zoom({
-            position: 'topleft'
+            position: 'topright'
         }).addTo(map);
         var measureControl = new L.Control.Measure({
-            position: 'topleft',
+            position: 'topright',
             primaryLengthUnit: 'feet',
             secondaryLengthUnit: 'miles',
             primaryAreaUnit: 'sqfeet',
@@ -245,7 +253,7 @@
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(223,209,167,1.0)',
+                fillColor: 'rgba(201,201,200,1.0)',
                 interactive: false,
             }
         }
@@ -253,11 +261,11 @@
             return {
                 pane: 'pane_Driveways_4',
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(201,201,200,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
-                weight: 0.5,
+                weight: 1,
                 fillOpacity: 0,
                 interactive: false,
             }
@@ -332,7 +340,7 @@
         function style_Roads_0_0() {
             return {
                 pane: 'pane_Roads_0',
-                opacity: 1,
+                opacity: 0,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
                 lineCap: 'square',
@@ -376,19 +384,11 @@
                     }
                 },
                 mouseover: highlightFeature,
+            
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>Plot</strong><br />' + (feature.properties['Plot'] !== null ? autolinker.link(String(feature.properties['Plot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Lot</strong><br />' + (feature.properties['Lot'] !== null ? autolinker.link(String(feature.properties['Lot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Lot Size</strong><br />' + (feature.properties['Lot_Size'] !== null ? autolinker.link(String(feature.properties['Lot_Size']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="1" style="font-weight:bold;font-size:larger;text-align:center;">' + (feature.properties['Plot'] !== null ? autolinker.link(String(feature.properties['Plot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -406,7 +406,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1, 
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(166,206,227,1.0)',
@@ -543,6 +543,7 @@
 		 	{label: '<img src="legend/Driveways_4.png" /> Driveways', layer: layer_Driveways_4},
 			{label: '<img src="legend/Buildings_5.png" /> Buildings', layer: layer_Buildings_5},]	
         var lay = L.control.layers.tree(null, overlaysTree,{
+            position: 'topright',
             //namedToggle: true,
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
@@ -593,8 +594,11 @@
               addLabel(layer, i);
               i++;
         });*/
+
+        /*
         map.addControl(new L.Control.Search({
             layer: layer_LotLabels_2,
+            position: 'topleft',
             initial: false,
             hideMarkerOnCollapse: true,
             propertyName: 'Lot'}));
@@ -612,23 +616,28 @@
         });
         map.on("layerremove", function(){
             resetLabels([layer_Roads_0,layer_LotLabels_2]);
-        });
+        });*/
         </script>
         <script>
             L.Control.Watermark = L.Control.extend({
                 onAdd: function(map) {
         // Create an image element
-            var img = L.DomUtil.create('img');
+            var div = L.DomUtil.create('div'); 
+            var a = L.DomUtil.create('a', '', div);
+            var img = L.DomUtil.create('img', '', a);
 
         // Set the source and style properties
+            div.style.height = '52px'; // Adjust the size as needed
+            a.href = 'http://farfieldmapping.com'; // Optional: Set a link for the logo
+            a.target = '_blank'; // Optional: Open the link in a new tab
             img.src = 'https://farfieldmapping.wordpress.com/wp-content/uploads/2024/01/ffm_logo_crop-2.png'; // Replace with your image path or URL
-            img.style.width = '50px';      // Adjust the size as needed
+            img.style.height = '52px';      // Adjust the size as needed
 
         // Optional: Add a link wrapper if the logo should be clickable
         // You would need a slightly different implementation for this, 
         // e.g., using a container div and an anchor tag inside it.
 
-        return img;
+        return div;
         },
         onRemove: function(map) {
         // Nothing to do here for a simple image control
