@@ -1,6 +1,5 @@
-
-        #map {
-            background-color: #e6e2df
+ #map {
+            background-color: #fafaf8
         }
         html, body, #map {
 			overflow: hidden;
@@ -60,7 +59,7 @@
         .leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
             border: 0px;
         }
-        }
+        
         .fa, .leaflet-container, a {
             color: #444444 !important;
         }
@@ -197,3 +196,80 @@
         .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
             display: none;
         }
+
+        .plot-list th {
+            background: #f8f8f8;
+            position: sticky;
+            top: 0;
+            border-bottom:1px solid #0f5fc5;
+            border-collapse: collapse;
+            padding: 4px 6px;
+        }
+        
+        #plot-div {
+           max-height: 40vh;
+           overflow: auto;
+        }
+
+
+        
+        .plot-list td {
+           vertical-align:top;
+           padding:6px 8px;
+           border-left:.5px dotted #0f5fc5;
+           border-bottom:1px solid #eee;
+        }
+        
+        .plot-list td:nth-child(1) {
+           vertical-align:top;
+           padding:6px 8px;
+           border-left:none;
+           font-weight:bold;
+        }
+        
+        .plot-list tr.selected {
+            background-color: rgba(166,206,227,1.0);
+        }
+
+        .plot-popup td:nth-child(1) {
+           vertical-align:top;
+           padding:6px 8px;
+           border-bottom:1px solid #eee;
+           width:30%;
+           font-weight:bold;
+        }
+
+        .plot-popup td:nth-child(2) {
+            padding:6px 8px;
+            border-bottom:1px solid #eee;
+        }
+        #myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 8px 8px 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
