@@ -24,7 +24,7 @@
                '</div>';
     html += '<input type="text" id="myInput" placeholder="Search for plots, grantees, and deceased.." title="Type in a name">';
 
-    html += '<div id="plot-div" style="padding-left:8px;padding-right:8px;padding-bottom:8px;">' + 
+    html += '<div id="plot-div" style="padding-left:2px;padding-right:2px;padding-bottom:8px;">' + 
             '<table id="plot-table" style="border-collapse:collapse;width:100%;">';
     html += '<thead><tr class="header" style="color:#0f5fc5;">'+
     '<th style="text-align:left;">Plot</th>'+
@@ -36,14 +36,16 @@
         var LotAttr = p.Lot ? ' data-lot="' + (p.Lot + '') + '"' : '';
         var PlotAttr = p.Plot ? ' data-plot="' + (p.Plot + '') + '"' : '';
         var name = ((p.FirstName||'') + ' ' + (p.LastName||'')).trim();
-        html += '<tr data-idx="' + idx + '"' + LotAttr + PlotAttr + ' style="cursor:pointer;">' +
+        var interred = (name && p.Grantee) || (name && !p.Grantee && name !=='open');
+        var reserved = !name && p.Grantee;
+        var available = (!name && !p.Grantee) || (name ==='open' && !p.Grantee);
+        var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
+        html += '<tr class="'+status+'" data-idx="' + idx + '"' + LotAttr + PlotAttr + ' style="cursor:pointer;">' +
         '<td style="padding:6px 6px;width:15%;">' + (p.Plot || '') + '</td>' +
         '<td style="padding:4px 6px;width:25%;">' + (p.Grantee || '') + '</td>'
-        if (name && p.Grantee) html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
-        else if (name && !p.Grantee && name !== 'open') html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
-        else if (!name && p.Grantee) html += '<td style="padding:4px 6px;width:25%;">' + ('Reserved' || '')
-        else if (!name && !p.Grantee) html += '<td style="padding:4px 6px;width:25%;">' + ('Available' || '')
-        else if (name ==='open' && !p.Grantee) html += '<td style="padding:4px 6px;width:25%;">' + ('Available' || '')
+        if (interred) html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
+        else if (reserved) html += '<td style="padding:4px 6px;width:25%;">' + ('Reserved' || '')
+        else if (available) html += '<td style="padding:4px 6px;width:25%;">' + ('Available' || '')
           html += '<td style="padding:4px 6px;">' + (name || '') + '</td>'
           '</tr></div>';
     });
