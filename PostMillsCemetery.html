@@ -62,14 +62,14 @@
               highlightLayer.setStyle({
                 //color: 'rgba(255, 165, 0, 1)',
                 //weight: 4,
-                fillColor: 'rgba(255,255,0,0.45)',
+                fillColor: 'rgba(255,255,0,1.0)',
                 fillOpacity: 1
               });
             }//highlightLayer.bringToFront();
         }
         
         var map = L.map('map', {
-            zoomControl:false, maxZoom:23, minZoom:19
+            zoomControl:false, maxZoom:23, minZoom:20,
         })
         map.setMaxBounds([[43.88808,-72.24951],[43.88451,-72.25342]]);
 
@@ -398,7 +398,7 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Plots_1_0() {
+        function style_Plots_1_0() { // interred
             return {
                 pane: 'pane_Plots_1',
                 opacity: 1,
@@ -409,7 +409,37 @@
                 weight: 1, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(166,206,227,1.0)',
+                fillColor: 'rgba(166,206,227,0.5)',
+                interactive: true,
+            }
+        }
+        function style_Plots_1_1() { //reserved
+            return {
+                pane: 'pane_Plots_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,204,204,0.5)',
+                interactive: true,
+            }
+        }
+        function style_Plots_1_2() { // available
+            return {
+                pane: 'pane_Plots_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(182,215,168,0.5)',
                 interactive: true,
             }
         }
@@ -423,7 +453,20 @@
             layerName: 'layer_Plots_1',
             pane: 'pane_Plots_1',
             onEachFeature: pop_Plots_1,
-            style: style_Plots_1_0,
+            style: function(feature) {
+                var name = ((feature.properties['FirstName'] || '' ) + ' ' + (feature.properties['LastName'] || '')).trim();
+                var grantee = feature.properties['Grantee'];
+                var interred = ((name && grantee) || (name && !grantee && name !=='open'));
+                var reserved = (!name && grantee);
+                var available = ((!name && !grantee) || (name === 'open' && !grantee));
+                if (interred) { //interred
+                    return style_Plots_1_0();
+                } else if (reserved) { // reserved
+                    return style_Plots_1_1();
+                } else if (available) { // available
+                    return style_Plots_1_2();
+                }
+            }
         });
         bounds_group.addLayer(layer_Plots_1);
         map.addLayer(layer_Plots_1);
@@ -479,7 +522,10 @@
             style: style_LotLabels_2_0,
         });
         bounds_group.addLayer(layer_LotLabels_2);
+
+        
         map.addLayer(layer_LotLabels_2);
+
         function pop_CemeteryBoundary_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -552,7 +598,7 @@
             //expandAll: 'Expand all',
             collapsed: true,
         });
-        lay.addTo(map);
+        //lay.addTo(map);
         setBounds();
         var i = 0;
         layer_Roads_0.eachLayer(function(layer) {
@@ -606,7 +652,7 @@
             document.getElementsByClassName('search-button')[0].className += ' fa fa-binoculars';
         } else {
             document.getElementsByClassName('search-button')[1].className += ' fa fa-binoculars';
-        }
+        }*/
         resetLabels([layer_Roads_0,layer_LotLabels_2]);
         map.on("zoomend", function(){
             resetLabels([layer_Roads_0,layer_LotLabels_2]);
@@ -616,7 +662,7 @@
         });
         map.on("layerremove", function(){
             resetLabels([layer_Roads_0,layer_LotLabels_2]);
-        });*/
+        });
         </script>
         <script>
             L.Control.Watermark = L.Control.extend({
