@@ -49,6 +49,7 @@
         <script src="data/PlotTable_6.js"></script>
         <script src="js/plot-list.js"></script>
         <script src="js/plot-info.js"></script>
+        <script src="js/plot-summary.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -72,7 +73,7 @@
             zoomControl:false, maxZoom:23, minZoom:20,
         })
         map.setMaxBounds([[43.88808,-72.24951],[43.88451,-72.25342]]);
-
+        
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a> &middot; <a href="https://farfieldmapping.com">Far Field Mapping</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -158,6 +159,11 @@
             secondaryAreaUnit: 'sqmiles'
         });
         measureControl.addTo(map);
+        var scale = new L.control.scale({
+            position: 'bottomright',
+        });
+        scale.addTo(map);
+
         document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
         document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
