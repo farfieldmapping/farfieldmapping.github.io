@@ -106,8 +106,9 @@
             color: #0078A8 !important;
         }
         .leaflet-control-scale-line {
-            border: 2px solid #f8f8f8 !important;
-            border-top: none !important;
+            border: 2px solid #0f5fc5 !important;
+            border-top: 2px solid #0f5fc5 !important;
+            background-color: #ffffff;
             color: black !important;
         }
         .leaflet-control-search .search-button {
@@ -253,32 +254,48 @@
             border-bottom:1px solid #eee;
         }
         #myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 8px 8px 8px 8px;
-  border: 1px solid #eee;
-  margin-bottom: 6px;
-}
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 95.5%;
+            font-size: 14px;
+            padding: 8px 8px 8px 8px;
+            border: 1px solid #eee;
+            margin-bottom: 6px;
+        }
 
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-}
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
 
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-}
+        #myTable th, #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
 
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
 
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
-}
+        #myTable tr.header, #myTable tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button {
+            border: none;
+            color: white;
+            padding-top: 12px;
+            padding-left: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: text;
+        }
+
+        .button1 {background-color:rgba(166,206,227,1);} 
+        .button2 {background-color: rgba(244,204,204,1);} 
+        .button3 {background-color: rgba(182,215,168,1);} 
