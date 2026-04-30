@@ -85,7 +85,7 @@
         }
     }*/
 
-    if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
-    else window.addEventListener('load', addToMap);
+    /*if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
+    else window.addEventListener('load', addToMap);*/
 
 })();
