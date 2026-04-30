@@ -612,7 +612,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['PRIMARYNAME'] === 'Robinson Hill Road'?String('<div style="transform: rotate(18deg);color: #323232; font-size: 12pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['PRIMARYNAME']) + '</div>': layer.feature.properties['PRIMARYNAME'] === 'VT Route 244'?'<a title="SPUI, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Vermont_244.svg"><img width="40" alt="Vermont 244" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Vermont_244.svg/330px-Vermont_244.svg.png"></a>':''), {permanent: true, offset: [-0, -16], className: 'css_Roads_0'});
+            layer.bindTooltip((layer.feature.properties['PRIMARYNAME'] === 'Robinson Hill Road'?String('<div style="transform: rotate(18deg);color: #000000; font-size: 12pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['PRIMARYNAME']) + '</div>': layer.feature.properties['PRIMARYNAME'] === 'VT Route 244'?'<a title="SPUI, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Vermont_244.svg"><img width="40" alt="Vermont 244" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Vermont_244.svg/330px-Vermont_244.svg.png"></a>':''), {permanent: true, offset: [-0, -16], className: 'css_Roads_0'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
