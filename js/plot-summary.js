@@ -24,10 +24,10 @@
     mapContainer.appendChild(container);
     function positionPopupDiv(){
                 try{
-                        container.style.top = 25 + '%';
+                        container.style.top = 35 + '%';
                         container.style.right = 10 +'px'
-                        container.style.bottom = 2 + '%'
-                        container.style.maxHeight = '20vh';
+                        //container.style.bottom = 35 + '%'
+                        container.style.maxHeight = '30vh';
                         container.style.overflow = 'hidden';
                     }
                 catch(e){}
