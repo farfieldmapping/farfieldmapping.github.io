@@ -151,6 +151,11 @@
         var zoomControl = L.control.zoom({
             position: 'topright'
         }).addTo(map);
+        var scale = new L.control.scale({
+            position: 'bottomright',
+        });
+        scale.addTo(map);
+        
         var measureControl = new L.Control.Measure({
             position: 'topright',
             primaryLengthUnit: 'feet',
@@ -158,14 +163,11 @@
             primaryAreaUnit: 'sqfeet',
             secondaryAreaUnit: 'sqmiles'
         });
-        measureControl.addTo(map);
-        var scale = new L.control.scale({
-            position: 'bottomright',
-        });
-        scale.addTo(map);
+        //measureControl.addTo(map);
 
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
+
+        //document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
+        //document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
             if (bounds_group.getLayers().length) {
@@ -586,8 +588,8 @@
         bounds_group.addLayer(layer_CemeteryBoundary_3);
         map.addLayer(layer_CemeteryBoundary_3);
 		
-        map.createPane('pane_Survey_7');
-        map.getPane('pane_Survey_7').style.zIndex = 410;
+        map.createPane('pane_Survey_7').style['mix-blend-mode'] = 'normal';
+        map.getPane('pane_Survey_7').style.zIndex = 300;
         var img_Survey_7 = 'data/Survey_georef_7.png';
         var img_bounds_Survey_7 = [[43.885201814993565,-72.25311795149555],[43.887392678114544,-72.25052790302821]];
         var layer_Survey_7 = new L.imageOverlay(img_Survey_7,
@@ -609,10 +611,10 @@
 
   
         var overlaysTree = [
-            {label: "1979 Survey", layer: layer_Survey_7},
             //{label: '<img src="legend/CemeteryBoundary_3.png" /> Cemetery Boundary', layer: layer_CemeteryBoundary_3},
-            //{label: 'Lot Labels', layer: layer_LotLabels_2},
-            //{label: '<img src="legend/Plots_1.png" /> Plots', layer: layer_Plots_1},
+            {label: 'Lot Labels', layer: layer_LotLabels_2},
+            {label: 'Plots', layer: layer_Plots_1},
+            {label: "1979 Survey", layer: layer_Survey_7},
             //{label: '<img src="legend/Roads_0.png" /> Roads', layer: layer_Roads_0},
 		 	//{label: '<img src="legend/Driveways_4.png" /> Driveways', layer: layer_Driveways_4},
 			//{label: '<img src="legend/Buildings_5.png" /> Buildings', layer: layer_Buildings_5},
