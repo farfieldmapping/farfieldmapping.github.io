@@ -586,11 +586,12 @@
         bounds_group.addLayer(layer_CemeteryBoundary_3);
         map.addLayer(layer_CemeteryBoundary_3);
 
-		var oldCemetery = L.tooltip()
+		var oldCemetery = L.tooltip({
+            permanent: true,
+        })
             .setLatLng([43.88639,-72.25150])
             .setContent('<div style="color: #323232; font-size: 12pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">Old Cemetery</div>')
             .openOn(map);
-        
 		
         var overlaysTree = [
             {label: '<img src="legend/CemeteryBoundary_3.png" /> Cemetery Boundary', layer: layer_CemeteryBoundary_3},
