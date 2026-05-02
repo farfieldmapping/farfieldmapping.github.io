@@ -102,7 +102,7 @@
                 if (window.map && typeof window.map.fitBounds === 'function' && typeof found.getBounds === 'function') {
                     try { window.map.fitBounds(found.getBounds(), {
                         paddingTopLeft:[200,0],
-                        maxZoom:21}); 
+                        maxZoom:map.getZoom()}); 
                     } catch (e){}
                 }
                 highlightedPlotLayer = found;
