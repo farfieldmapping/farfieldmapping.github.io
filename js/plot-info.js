@@ -3,23 +3,29 @@
     function buildPopupHtml(p){
         var plot = p.Plot;
         var name = ((p.FirstName||'') + ' ' + (p.LastName||'')).trim();
+        var interred = (name && p.Grantee) || (name && !p.Grantee && name !=='open');
+        var reserved = !name && p.Grantee;
+        var available = (!name && !p.Grantee) || (name ==='open' && !p.Grantee);
+        var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
+        var notes = ((p.Notes1 || '') + ' ' + (p.Notes2 || '') + ' ' + (p.Notes3 || '') + ' ' + (p.Notes4 || '')).trim();
         //var html = '<div style="background-color: #ef4036;text-align:center;padding:6px 8px;border-bottom:1px solid #ef4036;font-weight:bold;font-size:16px;color: #ffffff">'+ fullName +'</div>';
         var html = '<div class="plot-popup" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;padding-left:8px;padding-right:8px;padding-bottom:8px;"><table style="border-collapse:collapse;width:100%;cursor:text;">';
         html += '<tbody>';
-        html += '<tr><td colspan="2" style="text-align:center;font-size:larger;">Deceased Info</td>'
-        html += '<tr><td>Name</td><td>' + name + '</td></tr>';
-        html += '<tr><td>Burial Date</td><td>' + (p.BurialDate || '') + '</td></tr>';
-        html += '<tr><td>Burial Note</td><td>' + (p.BurialNote || '') + '</td></tr>';
-        html += '<tr><td colspan="2" style="text-align:center;font-size:larger;">Deed Info</td>'
-        html += '<tr><td>Grantee Last Name</td><td>' + (p.Grantee || '') + '</td></tr>';
-        html += '<tr><td>Book</td><td>' + (p.Book || '') + '</td></tr>';
-        html += '<tr><td>Page</td><td>' + (p.Page || '') + '</td></tr>';
-        html += '<tr><td>Recording Date</td><td>' + (p.RecordingDate || '') + '</td></tr>';
-        html += '<tr><td colspan="2" style="text-align:center;font-size:larger;">Notes</td>'
-        html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none">' + (p.Notes1 || '') + '</td></tr>';
-        html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none">' + (p.Notes2 || '') + '</td></tr>';
-        html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none">' + (p.Notes3 || '') + '</td></tr>';
-        html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none">' + (p.Notes4 || '') + '</td></tr>';
+        if (status === 'Interred') html += '<tr><td colspan="2" style="text-align:center;font-size:larger;border-bottom:none;">Deceased Info</td>'
+        if (status === 'Interred') html += '<tr><td>Name</td><td>' + name + '</td></tr>';
+        if (status === 'Interred') html += '<tr><td>Burial Date</td><td>' + (p.BurialDate || '') + '</td></tr>';
+        if (status === 'Interred') html += '<tr><td>Burial Note</td><td>' + (p.BurialNote || '') + '</td></tr>';
+        if (status !== 'Available') html += '<tr><td colspan="2" style="text-align:center;font-size:larger;border-bottom:none;">Deed Info</td>'
+        if (status === 'Available') html += '<tr><td colspan="2" style="text-align:center;font-size:larger;border-bottom:none;padding-bottom:25%;font-style:italic;">Available</td>'
+        if (status !== 'Available') html += '<tr><td>Grantee Last Name</td><td>' + (p.Grantee || '') + '</td></tr>';
+        if (status !== 'Available') html += '<tr><td>Book</td><td>' + (p.Book || '') + '</td></tr>';
+        if (status !== 'Available') html += '<tr><td>Page</td><td>' + (p.Page || '') + '</td></tr>';
+        if (status !== 'Available') html += '<tr><td>Recording Date</td><td>' + (p.RecordingDate || '') + '</td></tr>';
+        if (notes) html += '<tr><td colspan="2" style="text-align:center;font-size:larger;border-bottom:none;">Notes</td>'
+        if (notes) html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none;">' + (p.Notes1 || '') + '</td></tr>';
+        if (notes) html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none;">' + (p.Notes2 || '') + '</td></tr>';
+        if (notes) html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none;">' + (p.Notes3 || '') + '</td></tr>';
+        if (notes) html += '<tr><td colspan="2" style="font-weight:normal;border-bottom:none;">' + (p.Notes4 || '') + '</td></tr>';
         html += '</tbody></table></div>';
         return html;
     }
@@ -155,6 +161,31 @@
                 if (L.DomEvent.disableScrollPropagation) L.DomEvent.disableScrollPropagation(popupDiv);
             }
         }, true);
-
+window.addEventListener('load', function(){
+      if (window.layer_Plots_1) {
+        layer_Plots_1.on('click', function(e){
+          var props = (e.layer && e.layer.feature && e.layer.feature.properties) || (e.feature && e.feature.properties) || {};
+          var plotID = props['Plot'] || '';
+          var popupHtml = buildPopupHtml(props);
+            var pl = props.Plot
+            var name = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
+            var interred = (name && props.Grantee) || (name && !props.Grantee && name !=='open');
+            var reserved = !name && props.Grantee;
+            var available = (!name && !props.Grantee) || (name ==='open' && !props.Grantee);
+            var status = interred ? 'rgba(166,206,227,1)' : reserved ? 'rgba(244,204,204,1)' : available ? 'rgba(182,215,168,1)' : '';
+            //var fullName = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
+            popupDiv.innerHTML = '<div style="position:sticky;top:0;background-color:' + status + ';text-align:left;padding:12px;border-bottom:1px solid #EEE;font-weight:bold;font-size:16px;color: #000000;cursor:text;">'+ pl +'<button id="plot-popup-close" style="font-size:12px;margin-bottom:6px;padding:4px 8px;float:right;cursor:pointer;">Close</button></div>' + popupHtml;
+            var closeBtn = popupDiv.querySelector('#plot-popup-close');
+            if (closeBtn) closeBtn.addEventListener('click', function(){
+                popupDiv.style.display = 'none';
+                container.querySelectorAll('tr.selected').forEach(function(r){ r.classList.remove('selected'); });
+                clearPlotHighlight();
+            });
+            popupDiv.style.display = 'block';
+            positionPopupDiv();
+        });
+      }
+    } 
+  );
     });
 })();
