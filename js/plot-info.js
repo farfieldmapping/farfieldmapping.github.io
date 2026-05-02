@@ -99,12 +99,12 @@
                     });
                 }
                 if (typeof found.bringToFront === 'function') found.bringToFront();
-                if (panTo && window.map && typeof window.map.fitBounds === 'function' && typeof found.getBounds === 'function') {
-                    try { window.map.fitBounds(found.getBounds(), {padding:[20,20]}); } catch (e){}
+                if (window.map && typeof window.map.fitBounds === 'function' && typeof found.getBounds === 'function') {
+                    try { window.map.fitBounds(found.getBounds(), {
+                        paddingTopLeft:[200,0],
+                        maxZoom:21}); 
+                    } catch (e){}
                 }
-                /*if (window.map && typeof window.map.fitBounds === 'function') {
-                    window.map.fitBounds(highlightedPlotLayer.getBounds(), {padding:[20,20]});
-                }*/
                 highlightedPlotLayer = found;
             } catch (e) {}
         }
