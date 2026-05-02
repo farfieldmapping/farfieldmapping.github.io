@@ -1,7 +1,7 @@
 (function() {
     if (!window.json_PlotTable_6) return;
     var features = json_PlotTable_6.features || [];
-
+    
     var listItems = features.map(function(f) { return { props: f.properties || {}, geom: f.geometry || null }; });
     listItems.sort(function(a, b) {
         var la = (a.props.Plot || '').toString();
@@ -51,6 +51,7 @@
         var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
         arr.push(status);
     });
+   
     var plotCount = arr.length;
     var interredCount = arr.filter(function(status){
         if (status === 'Interred')
@@ -64,11 +65,25 @@
         if (status === 'Available')
             return 'Available'
     }).length
-    html += '<p style="padding-left:0px;">Total Plots: <b>'+plotCount+
-    '</b><p><button class="button button1"></button>Interred: <b>'+interredCount+
-    '</b></p><p><button class="button button2"></button>Reserved: <b>'+reservedCount+
-    '</b></p><p><button class="button button3"></button>Available: <b>' +availableCount+
-    '</b></p></div></tbody></table>';
+
+    if (!window.json_LotLabels_2) return;
+    var lotFeatures = json_LotLabels_2.features
+    var lotItems = lotFeatures.map(function(l) {return {props: l.properties || {},geom: l.geometry || null};});
+    var lotArr = [];
+    lotItems.forEach(function(item,idx) {
+        var p = item.props;
+        var lot = p.Lot;
+        lotArr.push(lot);
+    });
+
+    var lotCount = lotArr.length;
+
+    html += '<p>Lots: <b>'+lotCount+
+    '</b></p><p style="padding-left:0px;">Plots: <b>'+plotCount+
+    '</b></p><p style="padding-left:12px;"><button class="button button1"></button>Interred: <b>'+interredCount+
+    '</b></p><p style="padding-left:12px;"><button class="button button2"></button>Reserved: <b>'+reservedCount+
+    '</b></p><p style="padding-left:12px;"><button class="button button3"></button>Available: <b>' +availableCount+
+    '</b></p></div>';
     container.innerHTML = html;
 
       /*function addToMap() {
