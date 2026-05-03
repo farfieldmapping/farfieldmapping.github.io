@@ -22,6 +22,7 @@
         }
         .info h2 {
             margin: 0 0 5px;
+		    color:#0f5fc5;
         }
         .leaflet-container {
             background: #fff;
