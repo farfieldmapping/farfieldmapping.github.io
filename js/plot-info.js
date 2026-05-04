@@ -161,31 +161,5 @@
                 if (L.DomEvent.disableScrollPropagation) L.DomEvent.disableScrollPropagation(popupDiv);
             }
         }, true);
-window.addEventListener('load', function(){
-      if (window.layer_Plots_1) {
-        layer_Plots_1.on('click', function(e){
-          var props = (e.layer && e.layer.feature && e.layer.feature.properties) || (e.feature && e.feature.properties) || {};
-          var plotID = props['Plot'] || '';
-          var popupHtml = buildPopupHtml(props);
-            var pl = props.Plot
-            var name = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
-            var interred = (name && props.Grantee) || (name && !props.Grantee && name !=='open');
-            var reserved = !name && props.Grantee;
-            var available = (!name && !props.Grantee) || (name ==='open' && !props.Grantee);
-            var status = interred ? 'rgba(166,206,227,1)' : reserved ? 'rgba(244,204,204,1)' : available ? 'rgba(182,215,168,1)' : '';
-            //var fullName = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
-            popupDiv.innerHTML = '<div style="position:sticky;top:0;background-color:' + status + ';text-align:left;padding:12px;border-bottom:1px solid #EEE;font-weight:bold;font-size:16px;color: #000000;cursor:text;">'+ pl +'<button id="plot-popup-close" style="font-size:12px;margin-bottom:6px;padding:4px 8px;float:right;cursor:pointer;">Close</button></div>' + popupHtml;
-            var closeBtn = popupDiv.querySelector('#plot-popup-close');
-            if (closeBtn) closeBtn.addEventListener('click', function(){
-                popupDiv.style.display = 'none';
-                container.querySelectorAll('tr.selected').forEach(function(r){ r.classList.remove('selected'); });
-                clearPlotHighlight();
-            });
-            popupDiv.style.display = 'block';
-            positionPopupDiv();
-        });
-      }
-    } 
-  );
     });
 })();
