@@ -231,7 +231,7 @@
         }
        
          .plot-list tr.Interred {
-            background-color: rgba(15, 95, 197,.55);
+            background-color: rgba(15, 95, 197,.5);
         }
         .plot-list tr.Reserved {
             background-color: rgba(103, 164, 244,.5);
@@ -298,6 +298,6 @@
             cursor: text;
         }
 
-        .button1 {background-color:rgba(15, 95, 197,.55);} 
+        .button1 {background-color:rgba(15, 95, 197,.5);} 
         .button2 {background-color: rgba(103, 164, 244,.5);} 
         .button3 {background-color: rgba(189, 215, 250,.5);} 
