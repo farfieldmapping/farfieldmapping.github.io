@@ -22,7 +22,7 @@
         }
         .info h2 {
             margin: 0 0 5px;
-		    color:#0f5fc5;
+            color:#0f5fc5;
         }
         .leaflet-container {
             background: #fff;
@@ -220,6 +220,7 @@
            padding:6px 8px;
            border-left:.5px solid rgba(248, 248, 248,.5);
            border-bottom:1px solid rgba(248, 248, 248,.5);
+           color:#1e1e1e
         }
         
         .plot-list td:nth-child(1) {
@@ -230,13 +231,13 @@
         }
        
          .plot-list tr.Interred {
-            background-color: rgba(166,206,227,.5);
+            background-color: rgba(15, 95, 197,.55);
         }
         .plot-list tr.Reserved {
-            background-color: rgba(244,204,204,.5);
+            background-color: rgba(103, 164, 244,.5);
         }
         .plot-list tr.Available {
-            background-color: rgba(182,215,168,.5);
+            background-color: rgba(189, 215, 250,.5);
         }
         .plot-list tr.selected {
             background-color: rgba(255,255,0,1.0);
@@ -297,6 +298,6 @@
             cursor: text;
         }
 
-        .button1 {background-color:rgba(166,206,227,1);} 
-        .button2 {background-color: rgba(244,204,204,1);} 
-        .button3 {background-color: rgba(182,215,168,1);} 
+        .button1 {background-color:rgba(15, 95, 197,.55);} 
+        .button2 {background-color: rgba(103, 164, 244,.5);} 
+        .button3 {background-color: rgba(189, 215, 250,.5);} 
