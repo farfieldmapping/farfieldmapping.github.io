@@ -286,7 +286,7 @@
             background-color: #f1f1f1;
         }
         .button {
-            border: none;
+            border: .5px solid rgba(35,35,35,1.0);
             color: white;
             padding-top: 12px;
             padding-left: 20px;
