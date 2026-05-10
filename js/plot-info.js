@@ -92,7 +92,7 @@
                 if (!found) return;
                 if (typeof found.setStyle === 'function') {
                     found.setStyle({
-                        color: 'rgba(0,255,255,1)',
+                        color: 'rgba(255, 165, 0, 1)',//'rgba(0,255,255,1)',
                         weight: 4,
                         fillColor: 'rgba(255,255,0,1)',
                         fillOpacity: 1
