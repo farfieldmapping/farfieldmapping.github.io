@@ -143,7 +143,7 @@
             var interred = (name && props.Grantee) || (name && !props.Grantee && name !=='open');
             var reserved = !name && props.Grantee;
             var available = (!name && !props.Grantee) || (name ==='open' && !props.Grantee);
-            var status = interred ? 'rgba(15, 95, 197,.5)' : reserved ? 'rgba(103, 164, 244,.5)' : available ? 'rgba(189, 215, 250,.5)' : '';
+            var status = interred ? 'rgba(132, 172, 223,1)' : reserved ? 'rgba(176, 206, 246,1)' : available ? 'rgba(219, 232, 249,1)' : '';
             //var fullName = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
             popupDiv.innerHTML = '<div style="position:sticky;top:0;background-color:' + status + ';text-align:left;padding:12px;border-bottom:1px solid #EEE;font-weight:bold;font-size:16px;color: #000000;cursor:text;">'+ pl +'<button id="plot-popup-close" style="font-size:12px;margin-bottom:6px;padding:4px 8px;float:right;cursor:pointer;">Close</button></div>' + popupHtml;
             var closeBtn = popupDiv.querySelector('#plot-popup-close');
