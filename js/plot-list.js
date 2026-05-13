@@ -1,6 +1,6 @@
-(function() {
+window.addEventListener('json_CemeteryDirectoryReady', function() {
     if (!window.json_PlotTable_6) return;
-    var features = json_PlotTable_6.features || [];
+    var features = window.json_PlotTable_6.features || [];
 
     var listItems = features.map(function(f) { return { props: f.properties || {}, geom: f.geometry || null }; });
     listItems.sort(function(a, b) {
@@ -35,12 +35,13 @@
         var p = item.props;
         var LotAttr = p.Lot ? ' data-lot="' + (p.Lot + '') + '"' : '';
         var PlotAttr = p.Plot ? ' data-plot="' + (p.Plot + '') + '"' : '';
+        var IdAttr = p.ID ? ' data-id="' + (p.ID + '') + '"' : '';
         var name = ((p.FirstName||'') + ' ' + (p.LastName||'')).trim();
         var interred = (name && p.Grantee) || (name && !p.Grantee && name !=='open');
         var reserved = !name && p.Grantee;
         var available = (!name && !p.Grantee) || (name ==='open' && !p.Grantee);
         var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
-        html += '<tr class="'+status+'" data-idx="' + idx + '"' + LotAttr + PlotAttr + ' style="cursor:pointer;">' +
+        html += '<tr class="'+status+'" data-idx="' + idx + '"' + LotAttr + PlotAttr + IdAttr + ' style="cursor:pointer;">' +
         '<td style="padding:6px 6px;width:15%;">' + (p.Plot || '') + '</td>' +
         '<td style="padding:4px 6px;width:25%;">' + (p.Grantee || '') + '</td>'
         if (interred) html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
@@ -88,8 +89,7 @@
 
     if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
     else window.addEventListener('load', addToMap);
-
-})();
+  });
 
 
 
