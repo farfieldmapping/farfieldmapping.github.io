@@ -1,4 +1,4 @@
-(function() {
+window.addEventListener('json_CemeteryDirectoryReady',function() {
     if (!window.json_PlotTable_6) return;
     var features = json_PlotTable_6.features || [];
     
@@ -39,7 +39,22 @@
                '</div>';
 
     html += '<div id="summary-div" style="padding-left:2px;padding-right:2px;padding-bottom:8px;">'
-    var arr = [];
+    
+    if (!window.json_Plots_1) return;
+    var plotFeatures = json_Plots_1.features
+    var plotItems = plotFeatures.map(function(l) {return {props: l.properties || {},geom: l.geometry || null};});
+    var plotArr = [];
+    plotItems.forEach(function(item,idx) {
+        var p = item.props;
+        var plot = p.Plot;
+        plotArr.push(plot);
+    });
+
+    var plotCount = plotArr.length;
+    
+    obj = {};
+    obj.arr = new Array();
+    //var arr = [];
     listItems.forEach(function(item, idx) {
         var p = item.props;
         var LotAttr = p.Lot ? ' data-lot="' + (p.Lot + '') + '"' : '';
@@ -49,22 +64,44 @@
         var reserved = !name && p.Grantee;
         var available = (!name && !p.Grantee) || (name ==='open' && !p.Grantee);
         var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
-        arr.push(status);
+        obj.arr.push({status: status, plot: p.Plot});
     });
    
-    var plotCount = arr.length;
-    var interredCount = arr.filter(function(status){
-        if (status === 'Interred')
-            return 'Interred'
-    }).length
-    var reservedCount = arr.filter(function(status){
-        if (status === 'Reserved')
-            return 'Reserved'
-    }).length
-    var availableCount = arr.filter(function(status){
-        if (status === 'Available')
-            return 'Available'
-    }).length
+    var plotTable = obj.arr;
+    var plotTableCount = plotTable.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+            t.status === value.status && t.plot === value.plot
+             ))).length;
+    var interred = obj.arr.filter(function(value){
+        if (value.status === 'Interred')
+            return true;
+        return false;
+    });
+    var interredCount = interred.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+            t.status === value.status && t.plot === value.plot
+             ))).length;
+
+    var reserved = obj.arr.filter(function(value){
+        if (value.status === 'Reserved')
+            return true;
+        return false;
+    });
+    var reservedCount = reserved.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+            t.status === value.status && t.plot === value.plot
+             ))).length;
+    var available = obj.arr.filter(function(value){
+        if (value.status === 'Available')
+            return true;
+        return false;
+    });
+    var availableCount = available.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+            t.status === value.status && t.plot === value.plot
+             ))).length;
+
+    var availableCountTotal = (plotCount - plotTableCount) + availableCount;
 
     if (!window.json_LotLabels_2) return;
     var lotFeatures = json_LotLabels_2.features
@@ -82,7 +119,7 @@
     '</b></p><p style="padding-left:0px;">Plots: <b>'+plotCount+
     '</b></p><p style="padding-left:12px;"><button class="button button1"></button>Interred: <b>'+interredCount+
     '</b></p><p style="padding-left:12px;"><button class="button button2"></button>Reserved: <b>'+reservedCount+
-    '</b></p><p style="padding-left:12px;"><button class="button button3"></button>Available: <b>' +availableCount+
+    '</b></p><p style="padding-left:12px;"><button class="button button3"></button>Available: <b>' +availableCountTotal+
     '</b></p></div>';
     container.innerHTML = html;
 
@@ -103,4 +140,4 @@
     /*if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
     else window.addEventListener('load', addToMap);*/
 
-})();
+});
