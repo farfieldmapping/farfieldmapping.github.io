@@ -46,6 +46,8 @@
         <script src="data/CemeteryBoundary_3.js"></script>
 	    <script src="data/Driveways_4.js"></script>
 		<script src="data/Buildings_5.js"></script>
+        <script src="data/CemeteryDirectory.js"></script>
+        <script src="js/DirectoryUpdate.js"></script>
         <script src="data/PlotTable_6.js"></script>
         <script src="js/plot-list.js"></script>
         <script src="js/plot-info.js"></script>
@@ -462,6 +464,14 @@
             pane: 'pane_Plots_1',
             onEachFeature: pop_Plots_1,
             style: function(feature) {
+                var plotTable = window.json_PlotTable_6 ? window.json_PlotTable_6.features : [];
+                plotTable.forEach(function(p) {
+                    if (p.properties.Plot === feature.properties.Plot) {
+                        feature.properties.FirstName = p.properties.FirstName;
+                        feature.properties.LastName = p.properties.LastName;
+                        feature.properties.Grantee = p.properties.Grantee;
+                    }
+                });
                 var name = ((feature.properties['FirstName'] || '' ) + ' ' + (feature.properties['LastName'] || '')).trim();
                 var grantee = feature.properties['Grantee'];
                 var interred = ((name && grantee) || (name && !grantee && name !=='open'));
