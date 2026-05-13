@@ -17,14 +17,18 @@
     });
 
     const fc = { type: "FeatureCollection", name : "Plots", crs : { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } } , features: rows.map(r => ({ type: "Feature", properties: r })) };
-    //var json_CemeteryDirectory_8 = document.getElementById('json').innerHTML = fc
-    const content = 'var json_CemeteryDirectory = ' +  JSON.stringify(fc, null, 2) + ';';
-    const blob = new Blob([content], { type: 'application/javascript' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'CemeteryDirectory.js';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    // expose for PlotTable_6.js
+    window.json_PlotTable_6 = fc;
+    // optional: notify listeners so you can avoid polling
+    window.dispatchEvent(new Event('json_CemeteryDirectoryReady'));
+    //const content = /*'var json_CemeteryDirectory = ' + */ JSON.stringify(fc, null, 2);
+    //document.getElementById('json').textContent = fc.features[0].properties.Plot;
+    //const blob = new Blob([content], { type: 'application/javascript' });
+    //const a = document.createElement('a');
+    //a.href = URL.createObjectURL(blob);
+    //a.download = 'CemeteryDirectory.js';
+    //document.body.appendChild(a);
+    //a.click();
+    //a.remove();
   }).catch(console.error);
 })();
