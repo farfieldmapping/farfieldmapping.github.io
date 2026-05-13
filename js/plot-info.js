@@ -1,5 +1,7 @@
-(function(){
-    function ready(fn){ if(document.readyState==='complete'||document.readyState==='interactive') setTimeout(fn,0); else window.addEventListener('load',fn); }
+window.addEventListener('json_CemeteryDirectoryReady',function(){
+    function ready(fn){ 
+        if(document.readyState==='complete'||document.readyState==='interactive') setTimeout(fn,0); 
+        else window.addEventListener('load',fn); }
     function buildPopupHtml(p){
         var plot = p.Plot;
         var name = ((p.FirstName||'') + ' ' + (p.LastName||'')).trim();
@@ -119,6 +121,7 @@
             if (e.preventDefault) e.preventDefault();
 
             var plot = row.getAttribute('data-plot');
+            var fid = row.getAttribute('data-id');
             // clear any previous selection
             container.querySelectorAll('tr.selected').forEach(function(r){ r.classList.remove('selected'); });
             // mark this row selected
@@ -128,7 +131,8 @@
                 for (var i = 0; i < window.json_PlotTable_6.features.length; i++) {
                     var f = window.json_PlotTable_6.features[i];
                     var pid = (f && f.properties && f.properties.Plot) ? (f.properties.Plot + '') : '';
-                    if (pid === plot) { feat = f; break; }
+                    var id = (f && f.properties && f.properties.ID) ? (f.properties.ID + '') : '';
+                    if (pid === plot && id === fid) { feat = f; break; }
                 }
             }
             if (!feat) {
@@ -138,13 +142,12 @@
             }
             var props = feat ? feat.properties || {} : {};
             var popupHtml = buildPopupHtml(props);
-            var pl = props.Plot
+            var pl = props.Plot;
             var name = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
             var interred = (name && props.Grantee) || (name && !props.Grantee && name !=='open');
             var reserved = !name && props.Grantee;
             var available = (!name && !props.Grantee) || (name ==='open' && !props.Grantee);
-            var status = interred ? 'rgba(132, 172, 223,1)' : reserved ? 'rgba(176, 206, 246,1)' : available ? 'rgba(219, 232, 249,1)' : '';
-            //var fullName = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
+            var status = interred ? 'rgba(132, 172, 223,1)' : reserved ? 'rgba(176, 206, 246,1)' : available ? 'rgba(219, 232, 249,1)' : '';            //var fullName = ((props.FirstName||'') + ' ' + (props.LastName||'')).trim();
             popupDiv.innerHTML = '<div style="position:sticky;top:0;background-color:' + status + ';text-align:left;padding:12px;border-bottom:1px solid #EEE;font-weight:bold;font-size:16px;color: #000000;cursor:text;">'+ pl +'<button id="plot-popup-close" style="font-size:12px;margin-bottom:6px;padding:4px 8px;float:right;cursor:pointer;">Close</button></div>' + popupHtml;
             var closeBtn = popupDiv.querySelector('#plot-popup-close');
             if (closeBtn) closeBtn.addEventListener('click', function(){
@@ -162,4 +165,4 @@
             }
         }, true);
     });
-})();
+});
