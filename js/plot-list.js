@@ -61,7 +61,7 @@ window.addEventListener('json_CemeteryDirectoryReady', function() {
     if (!table) return;
     var tr = table.getElementsByTagName('tr');
     for (var i = 0; i < tr.length; i++) {
-      var tds = tr[i].querySelectorAll('td:nth-child(1), td:nth-child(2), td:nth-child(4)'); // search in Plot, Grantee, and Deceased columns
+      var tds = tr[i].querySelectorAll('td:nth-child(1), td:nth-child(2), td:nth-child(3)'); // search in Plot, Grantee, and Deceased columns
       var rowText = '';
       for (var j = 0; j < tds.length; j++) rowText += (tds[j].textContent || tds[j].innerText) + ' ';
       tr[i].style.display = rowText.toUpperCase().indexOf(filter) > -1 ? '' : 'none';
