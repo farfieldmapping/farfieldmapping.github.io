@@ -29,7 +29,7 @@ window.addEventListener('json_CemeteryDirectoryReady', function() {
     html += '<thead><tr class="header" style="color:#0f5fc5;">'+
     '<th style="text-align:left;">Plot</th>'+
     '<th style="text-align:left;">Grantee</th>'+ 
-    '<th style="text-align:left;">Status</th>'+
+    //'<th style="text-align:left;">Status</th>'+
     '<th style="text-align:left;">Deceased</th></tr></thead><tbody>';
     listItems.forEach(function(item, idx) {
         var p = item.props;
@@ -42,12 +42,12 @@ window.addEventListener('json_CemeteryDirectoryReady', function() {
         var available = (!name && !p.Grantee) || (name ==='open' && !p.Grantee);
         var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
         html += '<tr class="'+status+'" data-idx="' + idx + '"' + LotAttr + PlotAttr + IdAttr + ' style="cursor:pointer;">' +
-        '<td style="padding:6px 6px;width:15%;">' + (p.Plot || '') + '</td>' +
+        '<td style="padding:6px 6px;width:25%;">' + (p.Plot || '') + '</td>' +
         '<td style="padding:4px 6px;width:25%;">' + (p.Grantee || '') + '</td>'
-        if (interred) html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
-        else if (reserved) html += '<td style="padding:4px 6px;width:25%;">' + ('Reserved' || '')
-        else if (available) html += '<td style="padding:4px 6px;width:25%;">' + ('Available' || '')
-          html += '<td style="padding:4px 6px;">' + (name || '') + '</td>'
+        //if (interred) html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
+        //else if (reserved) html += '<td style="padding:4px 6px;width:25%;">' + ('Reserved' || '')
+        //else if (available) html += '<td style="padding:4px 6px;width:25%;">' + ('Available' || '')
+        html += '<td style="padding:4px 6px;width:50%;">' + (name || '') + '</td>'
           '</tr></div>';
     });
     html += '</tbody></table>';
