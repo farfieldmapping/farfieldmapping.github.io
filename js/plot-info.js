@@ -161,6 +161,7 @@ window.addEventListener('json_CemeteryDirectoryReady',function(){
             });
             popupDiv.style.display = 'block';
             positionPopupDiv();
+            window.dispatchEvent(new Event('plotListClick'));
             // highlight the corresponding plot on the map
             try { highlightPlotById(plot || props.Plot, false); } catch (e) {}
             if (L && L.DomEvent) {
