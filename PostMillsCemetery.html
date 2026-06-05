@@ -55,15 +55,14 @@
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
-
             if (e.target.feature.geometry.type === 'LineString' || e.target.feature.geometry.type === 'MultiLineString') {
               highlightLayer.setStyle({
                 color: 'rgba(255, 255, 0, 1.00)',
               });
             } else {
               highlightLayer.setStyle({
-                //color: 'rgba(255, 165, 0, 1)',
-                //weight: 4,
+                color: 'rgba(255, 165, 0, 1)',
+                weight: 4,
                 fillColor: 'rgba(255,255,0,1.0)',
                 fillOpacity: 1
               });
@@ -500,30 +499,42 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>Lot</td>' + '<td style="font-weight:bold;">' + (feature.properties['Lot'] !== null ? autolinker.link(String(feature.properties['Lot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lot'] !== null ? autolinker.link(String(feature.properties['Lot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>Lot Size</td>' + '<td style="font-weight:bold;">' + (feature.properties['Lot_Size'] !== null ? autolinker.link(String(feature.properties['Lot_Size']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lot_Size'] !== null ? autolinker.link(String(feature.properties['Lot_Size']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Total_Plots'] !== null ? autolinker.link(String(feature.properties['Total_Plots']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                       <td>Total Plots</td>' + '<td style="font-weight:bold;">' + (feature.properties['Total_Plots'] !== null ? autolinker.link(String(feature.properties['Total_Plots']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
+            layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { 
+                maxHeight: 400,
+                //closeOnClick: true,
+                autoClose: true 
+            });
+            window.addEventListener('plotListClick',function(){
+                layer.closePopup()
+            })
         }
 
         function style_LotLabels_2_0() {
             return {
-                fill: false,
-                stroke: false,
-                interactive: false
+                pane: 'pane_LotLabels_2',
+                opacity: 0,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 0,
+                stroke: true,
+                interactive: true
             }
         }
         map.createPane('pane_LotLabels_2');
@@ -531,18 +542,18 @@
         map.getPane('pane_LotLabels_2').style['mix-blend-mode'] = 'normal';
         var layer_LotLabels_2 = new L.geoJson(json_LotLabels_2, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_LotLabels_2',
             layerName: 'layer_LotLabels_2',
             pane: 'pane_LotLabels_2',
             onEachFeature: pop_LotLabels_2,
             style: style_LotLabels_2_0,
         });
+       
         bounds_group.addLayer(layer_LotLabels_2);
 
-        
         map.addLayer(layer_LotLabels_2);
-
+        
         function pop_CemeteryBoundary_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
