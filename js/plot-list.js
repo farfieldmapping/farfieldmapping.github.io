@@ -1,4 +1,5 @@
-window.addEventListener('json_CemeteryDirectoryReady', function() {
+window.addEventListener('json_CemeteryDirectoryReady',plotList);
+function plotList() {
     if (!window.json_PlotTable_6) return;
     var features = window.json_PlotTable_6.features || [];
 
@@ -89,4 +90,4 @@ window.addEventListener('json_CemeteryDirectoryReady', function() {
 
     if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
     else window.addEventListener('load', addToMap);
-  });
+  };
