@@ -26,6 +26,10 @@
     <body>
         <div id="map">
         </div>
+        <script src="data/PlotTable_6.js"></script>
+        <script src="js/DirectoryUpdate.js"></script>
+        <script src="js/plot-list.js"></script>
+        <script src="js/plot-info.js"></script>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
@@ -46,11 +50,8 @@
         <script src="data/CemeteryBoundary_3.js"></script>
 	    <script src="data/Driveways_4.js"></script>
 		<script src="data/Buildings_5.js"></script>
-        <script src="js/DirectoryUpdate.js"></script>
-        <script src="data/PlotTable_6.js"></script>
-        <script src="js/plot-list.js"></script>
-        <script src="js/plot-info.js"></script>
         <script src="js/plot-summary.js"></script>
+
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -210,7 +211,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.75,
                 fillColor: 'rgba(35,35,35,1.0',
                 interactive: false,
             }
@@ -304,36 +305,6 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(String(feature.properties['OBJECTID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['RTNAME'] !== null ? autolinker.link(String(feature.properties['RTNAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['HWYSIGN'] !== null ? autolinker.link(String(feature.properties['HWYSIGN']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['AOTCLASS'] !== null ? autolinker.link(String(feature.properties['AOTCLASS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['FUNCL'] !== null ? autolinker.link(String(feature.properties['FUNCL']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['RDFLNAME'] !== null ? autolinker.link(String(feature.properties['RDFLNAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['RTNUMBER'] !== null ? autolinker.link(String(feature.properties['RTNUMBER']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SURFACETYPE'] !== null ? autolinker.link(String(feature.properties['SURFACETYPE']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SN'] !== null ? autolinker.link(String(feature.properties['SN']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['PRIMARYNAME'] !== null ? autolinker.link(String(feature.properties['PRIMARYNAME']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -463,6 +434,7 @@
             onEachFeature: pop_Plots_1,
             style: function(feature) {
                 var plotTable = window.json_PlotTable_6 ? window.json_PlotTable_6.features : [];
+                //var plots = window.json_Plots_1 ? window.json_Plots_1.features : [];
                 plotTable.forEach(function(p) {
                     if (p.properties.Plot === feature.properties.Plot) {
                         feature.properties.FirstName = p.properties.FirstName;
@@ -472,6 +444,7 @@
                 });
                 var name = ((feature.properties['FirstName'] || '' ) + ' ' + (feature.properties['LastName'] || '')).trim();
                 var grantee = feature.properties['Grantee'];
+                //var status = feature.properties['Status'];
                 var interred = ((name && grantee) || (name && !grantee && name !=='open'));
                 var reserved = (!name && grantee);
                 var available = ((!name && !grantee) || (name === 'open' && !grantee));
@@ -553,7 +526,6 @@
         bounds_group.addLayer(layer_LotLabels_2);
 
         map.addLayer(layer_LotLabels_2);
-        
         function pop_CemeteryBoundary_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -617,7 +589,7 @@
                     {pane: 'pane_Survey_7'});
         bounds_group.addLayer(layer_Survey_7);
         //map.addLayer(layer_Survey_7);
-
+  
 
 
 
