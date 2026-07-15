@@ -1,4 +1,5 @@
-window.addEventListener('json_CemeteryDirectoryReady',function(){
+window.addEventListener('json_CemeteryDirectoryReady',plotInfo);
+function plotInfo(){
     function ready(fn){ 
         if(document.readyState==='complete'||document.readyState==='interactive') setTimeout(fn,0); 
         else window.addEventListener('load',fn); }
@@ -170,4 +171,4 @@ window.addEventListener('json_CemeteryDirectoryReady',function(){
             }
         }, true);
     });
-});
+};
