@@ -56,7 +56,7 @@ var json_PlotTable_6;
   // filter Plot list using the Lot layer
   window.addEventListener('load', function(){
     try {
-      if (window.layer_Plots_1 && typeof window.filterbyLot === 'function') {
+      if (window.layer_LotLabels_2 && typeof window.filterbyLot === 'function') {
         layer_LotLabels_2.on('click', function(e){
           try {
             if (e && e.originalEvent) {
