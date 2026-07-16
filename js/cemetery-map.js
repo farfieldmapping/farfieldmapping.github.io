@@ -403,7 +403,9 @@
             }
         });
         bounds_group.addLayer(layer_Plots_1);
-        map.addLayer(layer_Plots_1);
+         setTimeout(function(){
+            map.addLayer(layer_Plots_1)
+        },1000);
         function pop_LotLabels_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
