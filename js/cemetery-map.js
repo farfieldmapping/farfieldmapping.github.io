@@ -114,6 +114,7 @@
 
         //document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
         //document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
+        
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
             if (bounds_group.getLayers().length) {
@@ -367,9 +368,25 @@
                 interactive: true,
             }
         }
+        function style_Plots_1a_0() { // highlight
+            return {
+                pane: 'pane_Plots_1',
+                opacity: 0,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 0,
+                fillColor: 'rgba(189, 215, 250,.5)',
+                interactive: true,
+            }
+        }
         map.createPane('pane_Plots_1');
         map.getPane('pane_Plots_1').style.zIndex = 401;
         map.getPane('pane_Plots_1').style['mix-blend-mode'] = 'normal';
+        setTimeout(function(){
         var layer_Plots_1 = new L.geoJson(json_Plots_1, {
             attribution: '',
             interactive: true,
@@ -403,9 +420,18 @@
             }
         });
         bounds_group.addLayer(layer_Plots_1);
-         setTimeout(function(){
-            map.addLayer(layer_Plots_1)
+        map.addLayer(layer_Plots_1)
         },1000);
+        var layer_Plots_1a = new L.geoJson(json_Plots_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Plots_1',
+            layerName: 'layer_Plots_1',
+            pane: 'pane_Plots_1',
+            onEachFeature: pop_Plots_1,
+            style: style_Plots_1a_0()
+        });
+        map.addLayer(layer_Plots_1a)
         function pop_LotLabels_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -552,7 +578,7 @@
         var overlaysTree = [
             //{label: '<img src="legend/CemeteryBoundary_3.png" /> Cemetery Boundary', layer: layer_CemeteryBoundary_3},
             {label: 'Lot Labels', layer: layer_LotLabels_2},
-            {label: 'Plots', layer: layer_Plots_1},
+            //{label: 'Plots', layer: layer_Plots_1},
             {label: "1979 Survey", layer: layer_Survey_7},
             //{label: '<img src="legend/Roads_0.png" /> Roads', layer: layer_Roads_0},
 		 	//{label: '<img src="legend/Driveways_4.png" /> Driveways', layer: layer_Driveways_4},
@@ -634,3 +660,4 @@
         map.on("layerremove", function(){
             resetLabels([layer_Roads_0,layer_LotLabels_2]);
         });
+    
