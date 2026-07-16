@@ -371,8 +371,8 @@
         function style_Plots_1a_0() { // highlight
             return {
                 pane: 'pane_Plots_1',
-                opacity: 0,
-                color: 'rgba(35,35,35,1.0)',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -386,7 +386,9 @@
         map.createPane('pane_Plots_1');
         map.getPane('pane_Plots_1').style.zIndex = 401;
         map.getPane('pane_Plots_1').style['mix-blend-mode'] = 'normal';
-        setTimeout(function(){
+        window.addEventListener('json_CemeteryDirectoryReady',plotLayer());
+        //setTimeout(plotLayer,500);
+        function plotLayer(){
         var layer_Plots_1 = new L.geoJson(json_Plots_1, {
             attribution: '',
             interactive: true,
@@ -421,7 +423,7 @@
         });
         bounds_group.addLayer(layer_Plots_1);
         map.addLayer(layer_Plots_1)
-        },1000);
+        };
         var layer_Plots_1a = new L.geoJson(json_Plots_1, {
             attribution: '',
             interactive: true,
