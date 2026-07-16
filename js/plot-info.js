@@ -1,4 +1,5 @@
-window.addEventListener('json_CemeteryDirectoryReady',plotInfo);
+//window.addEventListener('json_CemeteryDirectoryReady',plotInfo);
+setTimeout(plotInfo,2000);
 function plotInfo(){
     function ready(fn){ 
         if(document.readyState==='complete'||document.readyState==='interactive') setTimeout(fn,0); 
@@ -72,8 +73,8 @@ function plotInfo(){
         var highlightedPlotLayer = null;
         function clearPlotHighlight() {
             try {
-                if (highlightedPlotLayer && window.layer_Plots_1 && typeof window.layer_Plots_1.resetStyle === 'function') {
-                    window.layer_Plots_1.resetStyle(highlightedPlotLayer);
+                if (highlightedPlotLayer && window.layer_Plots_1a && typeof window.layer_Plots_1a.resetStyle === 'function') {
+                    window.layer_Plots_1a.resetStyle(highlightedPlotLayer);
                 } else if (highlightedPlotLayer && typeof highlightedPlotLayer.setStyle === 'function') {
                     // best-effort reset when resetStyle isn't available
                     highlightedPlotLayer.setStyle({
@@ -89,10 +90,10 @@ function plotInfo(){
         function highlightPlotById(plotId, panTo) {
             try {
                 clearPlotHighlight();
-                if (!plotId || !window.layer_Plots_1 || typeof window.layer_Plots_1.eachLayer !== 'function') return;
+                if (!plotId || !window.layer_Plots_1a || typeof window.layer_Plots_1a.eachLayer !== 'function') return;
                 var pid = '' + plotId;
                 var found = null;
-                window.layer_Plots_1.eachLayer(function(layer) {
+                window.layer_Plots_1a.eachLayer(function(layer) {
                     var p = (layer && layer.feature && layer.feature.properties && layer.feature.properties.Plot) ? ('' + layer.feature.properties.Plot) : '';
                     if (p === pid) found = layer;
                 });
