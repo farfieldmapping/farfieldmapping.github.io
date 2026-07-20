@@ -34,7 +34,7 @@ function plotList() {
     //'<th style="text-align:left;">Status</th>'+
     '<th style="text-align:left;">Deceased</th></tr></thead><tbody>';
     listItems.forEach(function(item, idx) {
-        var p = item.props;
+       var p = item.props;
         var LotAttr = p.Lot ? ' data-lot="' + (p.Lot + '') + '"' : '';
         var PlotAttr = p.Plot ? ' data-plot="' + (p.Plot + '') + '"' : '';
         var IdAttr = p.ID ? ' data-id="' + (p.ID + '') + '"' : '';
@@ -43,8 +43,10 @@ function plotList() {
         var reserved = !name && p.Grantee;
         var available = (!name && !p.Grantee) || (name ==='open' && !p.Grantee);
         var status = interred ? 'Interred' : reserved ? 'Reserved' : available ? 'Available' : '';
+        var flagged = '';
+        if (p.Flagged) flagged += '<span style="color: red;font-weight:bold;"> !</span>'  //' 🔺' //'<span style="padding-left:6px;padding-top:12px;"><button class="button-flagged"></button></span>';
         html += '<tr class="'+status+'" data-idx="' + idx + '"' + LotAttr + PlotAttr + IdAttr + ' style="cursor:pointer;">' +
-        '<td style="padding:6px 6px;width:25%;">' + (p.Plot || '') + '</td>' +
+        '<td style="padding:6px 6px;width:25%;">' + (p.Plot || '') + flagged + '</td>' +
         '<td style="padding:4px 6px;width:25%;">' + (p.Grantee || '') + '</td>'
         //if (interred) html += '<td style="padding:4px 6px;width:25%;">' + ('Interred' || '')
         //else if (reserved) html += '<td style="padding:4px 6px;width:25%;">' + ('Reserved' || '')
