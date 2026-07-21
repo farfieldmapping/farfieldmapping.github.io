@@ -491,6 +491,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	font-size: 1.08333em;
 	min-height: 1px;
 	}
+
 .leaflet-popup-content p {
 	margin: 17px 0;
 	margin: 1.3em 0;
@@ -520,7 +521,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-	background: white;
+	background: rgba(255, 255, 255, 1);
 	color: #333;
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 	}
