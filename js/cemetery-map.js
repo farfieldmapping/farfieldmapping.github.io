@@ -447,13 +447,13 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td>Lot</td>' + '<td style="font-weight:bold;">' + (feature.properties['Lot'] !== null ? autolinker.link(String(feature.properties['Lot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td style="font-size:14px; font-weight:bold;text-align:center;padding-bottom:6px;">' + (feature.properties['Lot'] !== null ? autolinker.link(String(feature.properties['Lot']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td>Lot Size</td>' + '<td style="font-weight:bold;">' + (feature.properties['Lot_Size'] !== null ? autolinker.link(String(feature.properties['Lot_Size']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td>Lot Size: ' + '<span style="font-weight:bold;">' + (feature.properties['Lot_Size'] !== null ? autolinker.link(String(feature.properties['Lot_Size']).replace(/'/g, '\'').toLocaleString()) : '') + '</span></td>\
                     </tr>\
                     <tr>\
-                       <td>Total Plots</td>' + '<td style="font-weight:bold;">' + (feature.properties['Total_Plots'] !== null ? autolinker.link(String(feature.properties['Total_Plots']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                       <td>Total Plots: ' + '<span style="font-weight:bold;">' + (feature.properties['Total_Plots'] !== null ? autolinker.link(String(feature.properties['Total_Plots']).replace(/'/g, '\'').toLocaleString()) : '') + '</span></td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
