@@ -178,6 +178,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         bounds_group.addLayer(layer_ocean_svg);
         //map.addLayer(layer_ocean_svg);
 
+	/*
 const CustomImageGrid = L.GridLayer.extend({
     createTile: function (coords) {
         // Create a standard HTML Image element
@@ -203,7 +204,7 @@ const CustomImageGrid = L.GridLayer.extend({
 
     // Instantiate and add your custom image grid layer to the map
     const myCustomGrid = new CustomImageGrid().addTo(map);
-
+*/
     //---------Land
     map.createPane('pane_land');
     map.getPane('pane_land').style.zIndex = 400;
