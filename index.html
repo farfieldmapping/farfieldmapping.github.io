@@ -179,7 +179,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         map.addLayer(layer_ocean_svg);
 */
 	/*
-const CustomImageGrid = L.GridLayer.extend({
+	const CustomImageGrid = L.GridLayer.extend({
     createTile: function (coords) {
         // Create a standard HTML Image element
         const tile = document.createElement('img');
@@ -200,7 +200,7 @@ const CustomImageGrid = L.GridLayer.extend({
 
         return tile; // Leaflet expects a native HTMLElement returned
     }
-});
+	});
 
     // Instantiate and add your custom image grid layer to the map
     const myCustomGrid = new CustomImageGrid().addTo(map);
