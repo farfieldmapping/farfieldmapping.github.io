@@ -190,7 +190,7 @@ const CustomImageGrid = L.GridLayer.extend({
         
         // Define custom logic to determine what image source loads based on coordinates
         // Example: pulling separate images from a dynamic API endpoint
-        tile.src = `https://example.com{coords.z}&x=${coords.x}&y=${coords.y}`;
+        tile.src = `data/Ocean_SVG.svg`;
         
         // Handle broken tiles gracefully
         tile.onerror = function() {
