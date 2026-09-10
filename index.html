@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+     <title>Seaside Heights 1960</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
@@ -18,14 +19,7 @@
 </head>
 
 <style>
-    header {
-        background-color: cornsilk;
-        padding: 0px;
-        height:5%;
-        text-align: center;
-        font-size: 35px;
-        color: black;
-    }
+    
     html {
         width: 100%;
         height: 100%;
@@ -39,18 +33,55 @@
         padding: 0;
         margin: 0;
     }
+    header {
+        background-color: cornsilk;
+        padding: 0; 
+        top:0;
+        bottom:95%;
+        text-align: left;
+        font-size: 35px;
+        color: black;
+        
+    }
+    #header {
+        border: solid 5px #986F9B;
+    }
     #map {
         width: 100%;
-        height: 95%;
-        padding: 0;
+        height: 100%;
+        padding:0;
         margin: 0;
     }
+    .mapTitle {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background-color:#f8f8f8 !important;
+        color: #444444 !important;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border: solid 8px #986F9B;
+        border-radius: 5px;
+        height: fit-content;
+        max-width: 300px;
+        border-style: ridge;
+    }
+    .mapTitle h2 {
+        margin: 5px 0 5px;
+        text-align: center;
+        line-height: 1;
+        font-family: 'gabriola';
+        font-size: 32px;
+        font-weight: bold;
+        color:black;
+    }
+    .mapTitle p {
+        font-family: 'gabriola';
+        font-size: 16px;
+    }
 </style>
-<header>
-    Seaside Heights c.1960
-</header>
- <title>Seaside Heights 1960</title>
+
 <body>
+
+
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -77,6 +108,13 @@
 <script src="data/Municipal_bounds.js"></script>
 <script src="data/Places.js"></script>
 <script>
+    var map = L.map('map', {
+        zoomControl: true,
+        minZoom: 16,
+        maxZoom: 18
+    })
+        .setMaxBounds([[39.955000, -74.09500], [39.932594, -74.060000]])
+        .setView([39.941594, -74.074202], 16);
     var highlightLayer;
     function highlightFeature(e) {
         highlightLayer = e.target;
@@ -93,14 +131,22 @@
             });
         }//highlightLayer.bringToFront();
     }
-    var map = L.map('map', {
-        zoomControl: true,
-        minZoom: 16,
-        maxZoom: 18
-    })
-        .setMaxBounds([[39.955000, -74.09500], [39.932594, -74.060000]])
-        .setView([39.941594, -74.074202], 16);
-
+    
+        var title = new L.Control({'position':'topright'});
+        title.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'mapTitle');
+            this.update();
+            return this._div;
+        };
+        title.update = function () {
+            var title = '<h2>Seaside Heights, New Jersey<br>c. 1960</h2>';
+            var info = '<p>This interactive web map attempts to recreate\
+                the spatial layout of mid-20th century Seaside Heights and\
+                depict the locations that made the borough a special place for so many.</p>';
+            var attribution = '<p>Created by Far Field Mapping (2026).'
+            this._div.innerHTML = title + info + attribution;
+        };
+        title.addTo(map);
     // remove popup's row if "visible-with-data"
     function removeEmptyRowsFromPopupContent(content, feature) {
         var tempDiv = document.createElement('div');
@@ -169,13 +215,6 @@
             map.fitBounds(bounds_group.getBounds());
         }
     }
-
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    })//.addTo(map);
-
 
 
     //---------Ocean
@@ -581,14 +620,28 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
 
     map.fire('zoomend');
     
-//bounds_group.addLayer(layer_places);
+    //bounds_group.addLayer(layer_places);
     //map.addLayer(layer_places);
+    
     /*
+    map.createPane('pane_1959_imagery');
+    map.getPane('pane_1959_imagery').style.zIndex = 500;
+    map.getPane('pane_1959_imagery').style['mix-blend-mode'] = 'normal';
+    var img_Seaside_1959 = 'data/Seaside_1959_georef.tif';
+        var img_bounds_Seaside_1959 = [[39.955000, -74.09500], [39.932594, -74.060000]];
+        var layer_1959_imagery = new L.imageOverlay(img_Seaside_1959,
+                    img_bounds_Seaside_1959,
+                    {pane: 'pane_1959_imagery'});
+        bounds_group.addLayer(layer_1959_imagery);
+        map.addLayer(layer_1959_imagery);
+
+    */
+   /*
     var overlaysTree = [
             //{label: '<img src="legend/CemeteryBoundary_3.png" /> Cemetery Boundary', layer: layer_CemeteryBoundary_3},
-            {label: 'Road Labels', layer: layer_places}
+            //{label: 'Road Labels', layer: layer_places}
             //{label: 'Plots', layer: layer_Plots_1},
-            //{label: "1979 Survey", layer: layer_ocean_svg},
+            {label: "1959 Aerial Imagery", layer: layer_1959_imagery},
             //{label: '<img src="legend/Roads_0.png" /> Roads', layer: layer_Roads_0},
 		 	//{label: '<img src="legend/Driveways_4.png" /> Driveways', layer: layer_Driveways_4},
 			//{label: '<img src="legend/Buildings_5.png" /> Buildings', layer: layer_Buildings_5},
@@ -605,7 +658,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         });
         lay.addTo(map);
         setBounds();
-*/
+    */
     //Labels
     /*
     var i = 0;
