@@ -178,7 +178,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         bounds_group.addLayer(layer_ocean_svg);
         map.addLayer(layer_ocean_svg);
 */
-	/*
+	
 	const CustomImageGrid = L.GridLayer.extend({
     createTile: function (coords) {
         // Create a standard HTML Image element
@@ -191,11 +191,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         
         // Define custom logic to determine what image source loads based on coordinates
         // Example: pulling separate images from a dynamic API endpoint
-        tile.src = `data/Ocean_SVG.svg`;
+        tile.src = `data/Ocean.svg`;
         
         // Handle broken tiles gracefully
         tile.onerror = function() {
-            tile.src = 'data/Ocean_SVG.svg';
+            tile.src = 'data/Ocean.svg';
         };
 
         return tile; // Leaflet expects a native HTMLElement returned
@@ -204,7 +204,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
 
     // Instantiate and add your custom image grid layer to the map
     const myCustomGrid = new CustomImageGrid().addTo(map);
-*/
+
     //---------Land
     map.createPane('pane_land');
     map.getPane('pane_land').style.zIndex = 400;
