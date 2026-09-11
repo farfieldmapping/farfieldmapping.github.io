@@ -575,28 +575,52 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	font-size: 16px;
 	}
 
-.road_labels {
+.road_labels1_hor {
 	background: rgba(255, 255, 255,0);
 	border: 0px solid #666;
 	color: black;
-	font-family: gabriola;
+	font-family: Josefin Sans;
 	line-height: 0.8;
-	font-size: 16px;
+	font-size: 12px;
+	}
+.road_labels1_vert {
+	background: rgba(255, 255, 255,0);
+	border: 0px solid #666;
+	color: black;
+	font-family: Josefin Sans;
+	line-height: 0.8;
+	font-size: 12px;
+}
+.road_labels2_hor {
+	background: rgba(255, 255, 255,0);
+	border: 0px solid #666;
+	color: black;
+	font-family: Josefin Sans;
+	line-height: 0.8;
+	font-size: 14px;
+	}
+.road_labels2_vert {
+	background: rgba(255, 255, 255,0);
+	border: 0px solid #666;
+	color: black;
+	font-family: Josefin Sans;
+	line-height: 0.8;
+	font-size: 14px;
 	}
 .places_labels {
 	background: rgba(255, 255, 255,1);
 	border: 0px solid #666;
 	box-shadow: 3px 3px rgba(102, 102, 102,.75);
 	color: black;
-	font-family: gabriola;
+	font-family: Oregano;
 	line-height: 1.4;
-	font-size: 20px;
+	letter-spacing: 5%;
+	font-size: 18px;
 	font-weight: normal;
 	padding: 2px 2px 0 2px;
 	width:max-content;
 	border-radius: 5px;
 	}
-
 /* Tooltip */
 /* Base styles for the element that has a tooltip */
 .leaflet-tooltip {
