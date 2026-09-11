@@ -584,14 +584,17 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	font-size: 16px;
 	}
 .places_labels {
-	background: rgba(255, 255, 255,0);
+	background: rgba(255, 255, 255,1);
 	border: 0px solid #666;
-	color: white;
+	box-shadow: 3px 3px rgba(102, 102, 102,.75);
+	color: black;
 	font-family: gabriola;
-	line-height: 1;
-	font-size: 22px;
-	font-weight: bold;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	line-height: 1.4;
+	font-size: 20px;
+	font-weight: normal;
+	padding: 2px 2px 0 2px;
+	width:max-content;
+	border-radius: 5px;
 	}
 
 /* Tooltip */

@@ -143,7 +143,7 @@
             var info = '<p>This interactive web map attempts to recreate\
                 the spatial layout of mid-20th century Seaside Heights and\
                 depict the locations that made the borough a special place for so many.</p>';
-            var attribution = '<p>Created by Far Field Mapping (2026).'
+            var attribution = '<p id="attribution">Created by Far Field Mapping (2026).'
             this._div.innerHTML = title + info + attribution;
         };
         title.addTo(map);
@@ -495,7 +495,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             
             var placesDivIcon = L.divIcon({
                 iconSize: [110],
-                iconAnchor: [-20,20],
+                iconAnchor: [-20,30],
                 html: placesLabelHtml})    
             return L.marker(latlng, {
                   icon: placesDivIcon  
