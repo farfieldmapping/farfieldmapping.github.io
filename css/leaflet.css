@@ -598,6 +598,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	font-family: Josefin Sans;
 	line-height: 0.8;
 	font-size: 14px;
+	width:max-content;
 	}
 .road_labels2_vert {
 	background: rgba(255, 255, 255,0);
