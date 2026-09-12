@@ -109,6 +109,7 @@
 <script src="data/Roads_1959_poly.js"></script>
 <script src="data/Roads_1959_labels.js"></script>
 <script src="data/Municipal_bounds.js"></script>
+<script src="data/Municipal_labels.js"></script>
 <script src="data/Places.js"></script>
 <script>
     var map = L.map('map', {
@@ -506,10 +507,17 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         onEachFeature: '',
         pointToLayer: function (feature, latlng) {
             var placesLabelHtml = '<div class="places_labels">' + feature.properties.Name +'</div>'
-            
+            var placesName = feature.properties.Name;
+            var placesAnchor = [-20,30];
+                if (placesName == 'Fire Station') {placesAnchor = [90,40]};
+                if (placesName == 'Borough Hall') {placesAnchor = [45,40]};
+                if (placesName == '912 Boulevard') {placesAnchor = [-20,15]};
+                if (placesName == 'Good Time Charlies') {placesAnchor = [-20,15]};
+                if (placesName == 'Barnegat Ice Plant') {placesAnchor = [130,40]};
+
             var placesDivIcon = L.divIcon({
                 iconSize: [110],
-                iconAnchor: [-20,30],
+                iconAnchor: placesAnchor,
                 html: placesLabelHtml})    
             return L.marker(latlng, {
                   icon: placesDivIcon  
@@ -655,8 +663,93 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     bounds_group.addLayer(layer_OSM);
     //map.addLayer(layer_OSM);
 
+    //--------- Municipality Labels
+     map.createPane('pane_municipal_labels');
+    map.getPane('pane_municipal_labels').style.zIndex = 409;
+    map.getPane('pane_municipal_labels').style['mix-blend-mode'] = 'normal';
     
    
+    var layer_municipal_labels = L.geoJSON(json_municipal_labels, {
+        layerName: 'layer_municipal_labels',
+        pane: 'pane_municipal_labels',
+        interactive: false,
+        onEachFeature: '',
+        pointToLayer: function (feature, latlng) {
+            var muniLabelHtml = '<div class="municipal_label">' + feature.properties.Name +'</div>'
+            var muniName = feature.properties.Name;
+            var muniAnchor = [-20,30];
+
+            var muniDivIcon = L.divIcon({
+                iconSize: [110],
+                iconAnchor: muniAnchor,
+                html: muniLabelHtml})    
+            return L.marker(latlng, {
+                  icon: muniDivIcon  
+                })
+            }
+    });
+    var minVisibleZoom4 = 15;
+    var maxVisibleZoom4 = 16;
+
+    map.on('zoomend', function() {
+        var currentZoom4 = map.getZoom();
+    
+        if (currentZoom4 >= minVisibleZoom4 && currentZoom4 <= maxVisibleZoom4) {
+        // If within range and not already on the map, add it
+        if (!map.hasLayer(layer_municipal_labels)) {
+            map.addLayer(layer_municipal_labels);
+        }
+        } else {
+        // If outside range and currently on the map, remove it
+            if (map.hasLayer(layer_municipal_labels)) {
+            map.removeLayer(layer_municipal_labels);
+        }
+    }
+    });
+    map.fire('zoomend');
+    
+    
+    //General Labels
+    var atlanticOcean = L.tooltip({
+            permanent: true,
+        })
+            .setLatLng([39.941364, -74.062962])
+            .setContent('<div class= "waterbody">Atlantic<br>Ocean</div>')
+            .openOn(map);
+   
+    var barnegatBay = L.tooltip({
+            permanent: true,
+        })
+            .setLatLng([39.937991, -74.086647])
+            .setContent('<div class= "waterbody" style="font-size:18px;">Barnegat<br>Bay</div>')
+            .openOn(map);
+
+    var harborIsland = L.tooltip({
+            permanent: true,
+        })
+            .setLatLng([39.947845, -74.085016])
+            .setContent('<div class= "landfeature" style="font-size:18px;">Harbor<br>Island</div>')
+            .openOn(map);    
+
+    
+    
+    var minVisibleZoom4 = 15;
+    var maxVisibleZoom4 = 16;
+    
+
+    /*    
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+    }
+
+    map.on('click', onMapClick);
+        */
+
     var overlaysTree = [
             {label: "Seaside Today", layer: layer_OSM},
             ]	
@@ -672,7 +765,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         });
         lay.addTo(map);
         setBounds();
-    
+
+
+
+        
+        
     //Labels
     /*
     var i = 0;

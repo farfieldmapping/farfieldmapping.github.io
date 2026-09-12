@@ -654,6 +654,41 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	content: "";
 	}
 
+.waterbody {
+	color: black;
+	font-family: Oregano;
+	font-style: italic;
+	text-align: center;
+	line-height: 1;
+	letter-spacing: 5%;
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.landfeature {
+	color: black;
+	font-family: Oregano;
+	font-style: normal;
+	text-align: center;
+	line-height: 1;
+	letter-spacing: 5%;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.municipal_label {
+	color: white;
+	font-family: Pacifico;
+	font-style: normal;
+	text-align: center;
+	line-height: 1.4;
+	letter-spacing: 5%;
+	font-size: 24px;
+	font-weight: normal;
+	text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+
+}
+
 /* Directions */
 
 .leaflet-tooltip-bottom {
