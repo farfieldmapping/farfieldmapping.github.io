@@ -140,6 +140,10 @@
             this._div = L.DomUtil.create('div', 'mapTitle');
             this.update();
             return this._div;
+            if (L && L.DomEvent) {
+                if (L.DomEvent.disableClickPropagation) L.DomEvent.disableClickPropagation(this);
+                if (L.DomEvent.disableScrollPropagation) L.DomEvent.disableScrollPropagation(this);
+            }
         };
         title.update = function () {
             var title = '<h2>Seaside Heights, New Jersey<br>c. 1960</h2>';
@@ -150,6 +154,7 @@
             this._div.innerHTML = title + info + attribution;
         };
         title.addTo(map);
+        
     // remove popup's row if "visible-with-data"
     function removeEmptyRowsFromPopupContent(content, feature) {
         var tempDiv = document.createElement('div');
@@ -356,6 +361,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         churchIcon = new PlaceIcon({ iconUrl: 'icons/place_of_worship_christian3.svg' }),
         lodgingIcon = new PlaceIcon({ iconUrl: 'icons/tourism_hotel.svg' }),
         waterTowerIcon = new PlaceIcon({ iconUrl: 'icons/poi_tower_water.svg'});
+        boroughHallIcon = new PlaceIcon({ iconUrl: 'icons/tourist_museum.svg'});
 
     //var markerPopup = '';
     /*
@@ -475,6 +481,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                     icon: waterTowerIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
+            if (type == 'Borough Hall') {
+                return L.marker(latlng, {
+                    icon: boroughHallIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
         },
 
     });
@@ -532,19 +543,19 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     map.createPane('pane_roads_labels');
     map.getPane('pane_roads_labels').style.zIndex = 401;
     map.getPane('pane_roads_labels').style['mix-blend-mode'] = 'normal';
-    var layer_places = L.geoJSON(json_Roads_labels, {
+    var layer_roads_labels = L.geoJSON(json_Roads_labels, {
         interactive: false,
         dataVar: 'json_Roads_labels',
         layerName: 'layer_roads_labels',
         pane: 'pane_roads_labels',
         pointToLayer: function (feature, latlng) {
             var streetName = feature.properties.ST_NAME + ' ' + feature.properties.ST_POSTYP;
+            if(streetName == 'Ocean Boulevard') streetName = 'Boulevard';
             var labelRotation = feature.properties.Label_Rotation;
             var roads_labels_class;
             if(Math.abs(labelRotation) > 75) {roads_labels_class = 'road_labels1_vert'};
             if(Math.abs(labelRotation) < 75) {roads_labels_class = 'road_labels1_hor'};
             var roadLabelHtml = '<div class="'+ roads_labels_class +'" style="transform: Rotate('+ labelRotation + 'deg);">' + streetName +'</div>'
-            
             var roadDivIcon = L.divIcon({
                 iconSize: [110],
                 iconAnchor: [55,6],
@@ -567,13 +578,13 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     
         if (currentZoom >= minVisibleZoom && currentZoom <= maxVisibleZoom) {
         // If within range and not already on the map, add it
-        if (!map.hasLayer(layer_places)) {
-            map.addLayer(layer_places);
+        if (!map.hasLayer(layer_roads_labels)) {
+            map.addLayer(layer_roads_labels);
         }
         } else {
         // If outside range and currently on the map, remove it
-            if (map.hasLayer(layer_places)) {
-            map.removeLayer(layer_places);
+            if (map.hasLayer(layer_roads_labels)) {
+            map.removeLayer(layer_roads_labels);
         }
     }
     });
@@ -590,12 +601,12 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         pane: 'pane_roads_labels2',
         pointToLayer: function (feature, latlng) {
             var streetName2 = feature.properties.ST_NAME + ' ' + feature.properties.ST_POSTYP;
+            if(streetName2 == 'Ocean Boulevard') streetName2 = 'Boulevard';
             var labelRotation = feature.properties.Label_Rotation;
             var roads_labels_class;
             if(Math.abs(labelRotation) > 75) {roads_labels_class = 'road_labels2_vert'};
             if(Math.abs(labelRotation) < 75) {roads_labels_class = 'road_labels2_hor'};
             var roadLabelHtml = '<div class="'+ roads_labels_class + '" style="transform: Rotate('+ labelRotation + 'deg);">' + streetName2 +'</div>'
-            
             var roadDivIcon = L.divIcon({
                 iconSize: [110],
                 iconAnchor: [55,6],

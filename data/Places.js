@@ -4,8 +4,8 @@ var json_Places = {
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "fid": 1, "Name": "44 Sheridan", "Type": "House", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.071791343534827, 39.944104675631209 ] } },
-{ "type": "Feature", "properties": { "fid": 2, "Name": "Casino Pier", "Type": "Attraction", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.069829497889117, 39.942742309414584 ] } },
-{ "type": "Feature", "properties": { "fid": 3, "Name": "Pool", "Type": "Amenity", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.071723692153327, 39.94293745806673 ] } },
+{ "type": "Feature", "properties": { "fid": 2, "Name": "Casino Pier", "Type": "Attraction", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.069581117012163, 39.942691494203402 ] } },
+{ "type": "Feature", "properties": { "fid": 3, "Name": "Casino Pool", "Type": "Amenity", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.071723692153327, 39.94293745806673 ] } },
 { "type": "Feature", "properties": { "fid": 4, "Name": "Funtown", "Type": "Attraction", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.071322622948742, 39.937011503621115 ] } },
 { "type": "Feature", "properties": { "fid": 5, "Name": "Carousel", "Type": "Attraction", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.070577993977849, 39.942818652331425 ] } },
 { "type": "Feature", "properties": { "fid": 6, "Name": "Good Time Charlies", "Type": "Bar", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.07301360181927, 39.943920765584423 ] } },
@@ -24,7 +24,7 @@ var json_Places = {
 { "type": "Feature", "properties": { "fid": 19, "Name": "Parrot Club", "Type": "Bar", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.069974162687856, 39.942963058658208 ] } },
 { "type": "Feature", "properties": { "fid": 20, "Name": "Barney's Fish & Chips", "Type": "Restaurant", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.074126372072527, 39.937734783946418 ] } },
 { "type": "Feature", "properties": { "fid": 21, "Name": "Chatterbox", "Type": "Bar", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.071596635398137, 39.938478100760257 ] } },
-{ "type": "Feature", "properties": { "fid": 22, "Name": "Barnegat Ice Plant", "Type": "Store", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.075360125250882, 39.943333241135946 ] } }
+{ "type": "Feature", "properties": { "fid": 22, "Name": "Barnegat Ice Plant", "Type": "Store", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.075360125250882, 39.943333241135946 ] } },
+{ "type": "Feature", "properties": { "fid": 23, "Name": "Borough Hall", "Type": "Borough Hall", "Established": null, "Closed": null }, "geometry": { "type": "Point", "coordinates": [ -74.073617779158042, 39.943628462646387 ] } }
 ]
 }
-
