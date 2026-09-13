@@ -361,38 +361,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         fireIcon = new PlaceIcon({ iconUrl: 'icons/amenity_firestation3.svg' }),
         churchIcon = new PlaceIcon({ iconUrl: 'icons/place_of_worship_christian3.svg' }),
         lodgingIcon = new PlaceIcon({ iconUrl: 'icons/tourism_hotel.svg' }),
-        waterTowerIcon = new PlaceIcon({ iconUrl: 'icons/poi_tower_water.svg'});
-        boroughHallIcon = new PlaceIcon({ iconUrl: 'icons/tourist_museum.svg'});
+        waterTowerIcon = new PlaceIcon({ iconUrl: 'icons/poi_tower_water.svg'}),
+        boroughHallIcon = new PlaceIcon({ iconUrl: 'icons/tourist_museum.svg'}),
+        taffyStandIcon = new PlaceIcon({ iconUrl: 'icons/shopping_confectionery.svg'}),
+        souvenirShopIcon = new PlaceIcon({ iconUrl: 'icons/shopping_clothes.svg'});
 
-    //var markerPopup = '';
-    /*
-    function pop_places(feature, layer){
-        layer.on({
-            mouseout: function(e) {
-                for (var i in e.target._eventParents) {
-                    if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                }
-            },
-            mouseover: highlightFeature,
-        });
-        var popupContent = '<table>\
-                <tr>\
-                    <td colspan="2">' + (feature.properties['Name'] !== null ? String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString() : '') + '</td>\
-                </tr>\
-                <tr>\
-                    <td colspan="2">' + (feature.properties['Type'] !== null ? String(feature.properties['Type']).replace(/'/g, '\'').toLocaleString() : '') + '</td>\
-                </tr>\
-            </table>';
-        var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-        var markerPopup = 'test';
-        layer.on('popupopen', function(e) {
-            addClassToPopupIfMedia(content, e.popup);
-        });
-        layer.bindPopup(content, { maxHeight: 400 });
-    }
-*/
 
     map.createPane('pane_places');
     map.getPane('pane_places').style.zIndex = 403;
@@ -487,6 +460,16 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                     icon: boroughHallIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
+            if (type == 'Taffy Stand') {
+                return L.marker(latlng, {
+                    icon: taffyStandIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
+            if (type == 'Souvenir Shop') {
+                return L.marker(latlng, {
+                    icon: souvenirShopIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
         },
 
     });
@@ -514,6 +497,9 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                 if (placesName == '912 Boulevard') {placesAnchor = [-20,15]};
                 if (placesName == 'Good Time Charlies') {placesAnchor = [-20,15]};
                 if (placesName == 'Barnegat Ice Plant') {placesAnchor = [130,40]};
+                if (placesName == 'Harold' + "'" +'s Sno Ball Ices') {placesAnchor = [-20,15]};
+                if (placesName == 'Funtown Gift Shop') {placesAnchor = [45,40]};
+
 
             var placesDivIcon = L.divIcon({
                 iconSize: [110],
@@ -733,8 +719,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
 
     
     
-    var minVisibleZoom4 = 15;
-    var maxVisibleZoom4 = 16;
+
     
 
     /*    
