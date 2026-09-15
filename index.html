@@ -771,17 +771,6 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     
 
         
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-    }
-
-    map.on('click', onMapClick);
-        
 
     var overlaysTree = [
             {label: "Seaside Today", layer: layer_OSM},
