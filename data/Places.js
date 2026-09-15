@@ -30,6 +30,6 @@ var json_Places = {
 { "type": "Feature", "properties": { "fid": 25, "Name": "Kohr's Frozen Custard", "Type": "Restaurant", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.071895220485544, 39.936055182794149 ] } },
 { "type": "Feature", "properties": { "fid": 26, "Name": "Salt Water Taffy Stand", "Type": "Taffy Stand", "Established": null, "Closed": null, "Address": null, "Notes": "Where the Midway Stakehouse is today" }, "geometry": { "type": "Point", "coordinates": [ -74.070966349915295, 39.940348340908642 ] } },
 { "type": "Feature", "properties": { "fid": 27, "Name": "Funtown Gift Shop", "Type": "Souvenir Shop", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.0718815948279, 39.936166449937467 ] } },
-{ "type": "Feature", "properties": { "fid": 28, "Name": "Harold's Sno Ball Ices", "Type": "Restaurant", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.071812103974111, 39.935967945048205 ] } }
-]
-}
+{ "type": "Feature", "properties": { "fid": 28, "Name": "Harold's Sno Ball Ices", "Type": "Restaurant", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.071812103974111, 39.935967945048205 ] } },
+{ "type": "Feature", "properties": { "fid": 29, "Name": "Police Station", "Type": "Police Station", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.073943156823447, 39.943888887936694 ] } }
+]}

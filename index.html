@@ -135,16 +135,12 @@
             });
         }//highlightLayer.bringToFront();
     }
-    
+        /*
         var title = new L.Control({'position':'topright'});
         title.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'mapTitle');
             this.update();
             return this._div;
-            if (L && L.DomEvent) {
-                if (L.DomEvent.disableClickPropagation) L.DomEvent.disableClickPropagation(this);
-                if (L.DomEvent.disableScrollPropagation) L.DomEvent.disableScrollPropagation(this);
-            }
         };
         title.update = function () {
             var title = '<h2>Seaside Heights, New Jersey<br>c. 1960</h2>';
@@ -155,7 +151,40 @@
             this._div.innerHTML = title + info + attribution;
         };
         title.addTo(map);
+        */
+        var container = document.createElement('div');
+        container.className = 'mapTitle';
+        container.style.overflow = 'hidden';
+        container.style.padding = '6px 8px';
+        var title = '<h2>Seaside Heights, New Jersey<br>c. 1960</h2>';
+        var info = '<p>This interactive web map attempts to recreate\
+                    the spatial layout of mid-20th century Seaside Heights and\
+                    depict the locations that made the borough a special place for so many.</p>';
+        var attribution = '<p id="attribution">Created by Far Field Mapping (2026).'
+        var html = title + info + attribution;
+
+        container.innerHTML = html;
+
+        function addTitle() {
+            if (window.map && window.L && L.Control) {
+                var ctrl = L.control({ position: 'topright' });
+                ctrl.onAdd = function () { return container; };
+                ctrl.addTo(map);
+                // prevent clicks/scrolls inside this control from propagating to the map
+                if (L && L.DomEvent) {
+                    if (L.DomEvent.disableClickPropagation) L.DomEvent.disableClickPropagation(container);
+                    if (L.DomEvent.disableScrollPropagation) L.DomEvent.disableScrollPropagation(container);
+                }
+
+            }
+        }
+        addTitle()
         
+        /*
+        if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
+        else window.addEventListener('load', addToMap);
+        */
+
     // remove popup's row if "visible-with-data"
     function removeEmptyRowsFromPopupContent(content, feature) {
         var tempDiv = document.createElement('div');
@@ -359,6 +388,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         groceryIcon = new PlaceIcon({ iconUrl: 'icons/shop_supermarket.svg' }),
         pharmacyIcon = new PlaceIcon({ iconUrl: 'icons/health_pharmacy.svg' }),
         fireIcon = new PlaceIcon({ iconUrl: 'icons/amenity_firestation3.svg' }),
+        policeIcon = new PlaceIcon({ iconUrl: 'icons/background_security.svg' }),
         churchIcon = new PlaceIcon({ iconUrl: 'icons/place_of_worship_christian3.svg' }),
         lodgingIcon = new PlaceIcon({ iconUrl: 'icons/tourism_hotel.svg' }),
         waterTowerIcon = new PlaceIcon({ iconUrl: 'icons/poi_tower_water.svg'}),
@@ -438,6 +468,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             if (type == 'Fire Station') {
                 return L.marker(latlng, {
                     icon: fireIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
+            if (type == 'Police Station') {
+                return L.marker(latlng, {
+                    icon: policeIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
             if (type == 'Lodging') {
