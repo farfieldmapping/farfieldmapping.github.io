@@ -752,12 +752,25 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             .setContent('<div class= "landfeature" style="font-size:18px;">Harbor<br>Island</div>')
             .openOn(map);    
 
-    
-    
+    var NJ35 = L.tooltip({
+                permanent: true,
+                direction:'center'
+            })
+                .setLatLng([39.943831, -74.079496])
+                .setContent('<img src="icons/NJ_Route_35.svg" style="width:20px;"></img>')
+                .openOn(map);    
+        
+    var NJ37 = L.tooltip({
+                permanent: true,
+                direction:'center'
+            })
+                .setLatLng([39.941791, -74.084801])
+                .setContent('<img src="icons/NJ_Route_37.svg" style="width:20px;"></img>')
+                .openOn(map);    
 
     
 
-    /*    
+        
     var popup = L.popup();
 
     function onMapClick(e) {
@@ -768,7 +781,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     }
 
     map.on('click', onMapClick);
-        */
+        
 
     var overlaysTree = [
             {label: "Seaside Today", layer: layer_OSM},
