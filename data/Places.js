@@ -31,5 +31,7 @@ var json_Places = {
 { "type": "Feature", "properties": { "fid": 26, "Name": "Salt Water Taffy Stand", "Type": "Taffy Stand", "Established": null, "Closed": null, "Address": null, "Notes": "Where the Midway Stakehouse is today" }, "geometry": { "type": "Point", "coordinates": [ -74.070966349915295, 39.940348340908642 ] } },
 { "type": "Feature", "properties": { "fid": 27, "Name": "Funtown Gift Shop", "Type": "Souvenir Shop", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.0718815948279, 39.936166449937467 ] } },
 { "type": "Feature", "properties": { "fid": 28, "Name": "Harold's Sno Ball Ices", "Type": "Restaurant", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.071812103974111, 39.935967945048205 ] } },
-{ "type": "Feature", "properties": { "fid": 29, "Name": "Police Station", "Type": "Police Station", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.073943156823447, 39.943888887936694 ] } }
-]}
+{ "type": "Feature", "properties": { "fid": 29, "Name": "Police Station", "Type": "Police Station", "Established": null, "Closed": null, "Address": null, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ -74.073943156823447, 39.943888887936694 ] } },
+{ "type": "Feature", "properties": { "fid": 30, "Name": "1801 Boulevard", "Type": "House", "Established": null, "Closed": null, "Address": null, "Notes": "Clayton Sterling's house" }, "geometry": { "type": "Point", "coordinates": [ -74.074821481000328, 39.935936671074437 ] } }
+]
+}
