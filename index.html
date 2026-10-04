@@ -406,13 +406,32 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         interactive: true,
         onEachFeature: '',
         pointToLayer: function (feature, latlng) {
-            var name = '<span style="font-size: 14px; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white;">' + feature.properties.Name + '</span>';
+            //var name = '<span style="font-size: 14px; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white;">' + feature.properties.Name + '</span>';
             var featureIcon = '';
-            var markerPopup = '<table>\
-                    <tr>\
-                        <td colspan="1" style="font-size:14px; font-weight:bold;text-align:left;padding-bottom:0px;">' + String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString() + '</td>\
-                    </tr>\
-                    </table>';
+            var Name = String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString();
+            var Address = feature.properties['Address'];
+                function addressString(value){
+                    var street = value.split(',')[0]; 
+                    var cityState = value.split(',')[1];
+                    var zip = value.split(',')[2];
+                    return street + '<br>' + cityState + ', ' + zip
+                };
+            //var AddressString = Address.split(',')[0];            
+            var Description = feature.properties['Desc'];
+            var markerPopup = 
+                '<h2 style="font-size:14px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
+                '<table>'
+                if (Address) markerPopup += 
+                    '<tr>\
+                        <td style="vertical-align:top;"><strong>Address</strong></td>\
+                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + addressString(Address) + '</td>\
+                    </tr>'
+                if (Description) markerPopup += 
+                    '<tr>\
+                        <td style="vertical-align:top;"><strong>Description</strong></td>\
+                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + Description + '</td>\
+                    </tr>'
+                + '</table>';
             var markerPopupMinWidth = 120;
             var type = feature.properties.Type;
             if (type == 'House') {
