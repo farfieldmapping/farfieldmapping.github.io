@@ -3,7 +3,7 @@ var json_Places = {
 "name": "Places",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "fid": 1, "Name": "44 Sheridan", "Type": "House", "Established": null, "Closed": null, "Address": "44 Sheridan Avenue, Seaside Heights, NJ 08751", "Notes": null,"Desc": "Home of Dr. Samuel Tilles and family." }, "geometry": { "type": "Point", "coordinates": [ -74.071791343534827, 39.944104675631209 ] } },
+{ "type": "Feature", "properties": { "fid": 1, "Name": "44 Sheridan", "Type": "House", "Established": null, "Closed": null, "Address": "44 Sheridan Avenue, Seaside Heights, NJ 08751", "Notes": null,"Desc": "Home of Dr. Samuel Tilles and family" }, "geometry": { "type": "Point", "coordinates": [ -74.071791343534827, 39.944104675631209 ] } },
 { "type": "Feature", "properties": { "fid": 2, "Name": "Casino Pier", "Type": "Attraction", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": null }, "geometry": { "type": "Point", "coordinates": [ -74.069581117012163, 39.942691494203402 ] } },
 { "type": "Feature", "properties": { "fid": 3, "Name": "Casino Pool", "Type": "Amenity", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": null }, "geometry": { "type": "Point", "coordinates": [ -74.071723692153327, 39.94293745806673 ] } },
 { "type": "Feature", "properties": { "fid": 4, "Name": "Funtown", "Type": "Attraction", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": null }, "geometry": { "type": "Point", "coordinates": [ -74.071322622948742, 39.937011503621115 ] } },
@@ -35,3 +35,4 @@ var json_Places = {
 { "type": "Feature", "properties": { "fid": 30, "Name": "1801 Boulevard", "Type": "House", "Established": null, "Closed": null, "Address": "1801 Boulevard, Seaside Park, NJ 08752", "Notes": "Clayton Sterling's house","Desc": "Home of Clayton Sterling and family." }, "geometry": { "type": "Point", "coordinates": [ -74.074821481000328, 39.935936671074437 ] } }
 ]
 }
+

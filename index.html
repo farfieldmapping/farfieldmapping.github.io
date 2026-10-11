@@ -419,7 +419,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             //var AddressString = Address.split(',')[0];            
             var Description = feature.properties['Desc'];
             var markerPopup = 
-                '<h2 style="font-size:14px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
+                '<div style="font-family:Josefin Sans;"><h2 style="font-size:16px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
                 '<table>'
                 if (Address) markerPopup += 
                     '<tr>\
@@ -431,7 +431,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                         <td style="vertical-align:top;"><strong>Description</strong></td>\
                         <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + Description + '</td>\
                     </tr>'
-                + '</table>';
+                + '</table></div>';
             var markerPopupMinWidth = 120;
             var type = feature.properties.Type;
             if (type == 'House') {
@@ -568,7 +568,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                 iconAnchor: placesAnchor,
                 html: placesLabelHtml})    
             var markerPopup = 
-                '<h2 style="font-size:14px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
+                 '<div style="font-family:Josefin Sans;"><h2 style="font-size:16px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
                 '<table>'
                 if (Address) markerPopup += 
                     '<tr>\
@@ -580,7 +580,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                         <td style="vertical-align:top;"><strong>Description</strong></td>\
                         <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + Description + '</td>\
                     </tr>'
-                + '</table>';
+                + '</table></div>';
             var markerPopupMinWidth = 120;
             
             return L.marker(latlng, {
@@ -794,7 +794,15 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             .setLatLng([39.947845, -74.085016])
             .setContent('<div class= "landfeature" style="font-size:18px;">Harbor<br>Island</div>')
             .openOn(map);    
-
+    /*
+    var casinoPier = L.tooltip({
+            permanent: true,
+            direction: 'center'
+        })
+            .setLatLng([39.942691494203402, -74.069581117012163])
+            .setContent('<div class= "landfeature" style="font-size:18px;">Casino<br>Pier</div>')
+            .openOn(map);
+        */
     var NJ35 = L.tooltip({
                 permanent: true,
                 direction:'center'
@@ -810,10 +818,13 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                 .setLatLng([39.941791, -74.084801])
                 .setContent('<img src="icons/NJ_Route_37.svg" style="width:20px;"></img>')
                 .openOn(map);    
-
     
-
-        
+/*
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+*/
+map.on('click', onMapClick);
 
     var overlaysTree = [
             {label: "Seaside Today", layer: layer_OSM},
@@ -866,12 +877,8 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         });
         */
     //L.marker([39.941594, -74.074202], {icon:houseIcon}).addTo(map);
-    /*function onMapClick(e) {
-        alert("You clicked the map at " + e.latlng);
-    }
     
-    map.on('click', onMapClick);
-    */
+    
 </script>
 </body>
 </html>
