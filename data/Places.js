@@ -32,7 +32,9 @@ var json_Places = {
 { "type": "Feature", "properties": { "fid": 27, "Name": "Funtown Gift Shop", "Type": "Souvenir Shop", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": null }, "geometry": { "type": "Point", "coordinates": [ -74.0718815948279, 39.936166449937467 ] } },
 { "type": "Feature", "properties": { "fid": 28, "Name": "Harold's Sno Ball Ices", "Type": "Restaurant", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": null }, "geometry": { "type": "Point", "coordinates": [ -74.071812103974111, 39.935967945048205 ] } },
 { "type": "Feature", "properties": { "fid": 29, "Name": "Police Station", "Type": "Police Station", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": null }, "geometry": { "type": "Point", "coordinates": [ -74.073943156823447, 39.943888887936694 ] } },
-{ "type": "Feature", "properties": { "fid": 30, "Name": "1801 Boulevard", "Type": "House", "Established": null, "Closed": null, "Address": "1801 Boulevard, Seaside Park, NJ 08752", "Notes": "Clayton Sterling's house","Desc": "Home of Clayton Sterling and family." }, "geometry": { "type": "Point", "coordinates": [ -74.074821481000328, 39.935936671074437 ] } }
+{ "type": "Feature", "properties": { "fid": 30, "Name": "1801 Boulevard", "Type": "House", "Established": null, "Closed": null, "Address": "1801 Boulevard, Seaside Park, NJ 08752", "Notes": "Clayton Sterling's house","Desc": "Home of Clayton Sterling and family" }, "geometry": { "type": "Point", "coordinates": [ -74.074821481000328, 39.935936671074437 ] } },
+{ "type": "Feature", "properties": { "fid": 31, "Name": "Bat-em-Out", "Type": "Batting Cages", "Established": null, "Closed": null, "Address": null, "Notes": null,"Desc": "Batting cages next to Flo's Drive-In" }, "geometry": { "type": "Point", "coordinates": [  -74.072248240428803, 39.948595014222039 ] } }
+
 ]
 }
 

@@ -394,7 +394,8 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         waterTowerIcon = new PlaceIcon({ iconUrl: 'icons/poi_tower_water.svg'}),
         boroughHallIcon = new PlaceIcon({ iconUrl: 'icons/tourist_museum.svg'}),
         taffyStandIcon = new PlaceIcon({ iconUrl: 'icons/shopping_confectionery.svg'}),
-        souvenirShopIcon = new PlaceIcon({ iconUrl: 'icons/shopping_clothes.svg'});
+        souvenirShopIcon = new PlaceIcon({ iconUrl: 'icons/shopping_clothes.svg'}),
+        battingCagesIcon = new PlaceIcon({ iconUrl: 'icons/sport_baseball.svg'});
 
 
     map.createPane('pane_places');
@@ -524,6 +525,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                     icon: souvenirShopIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
+            if (type == 'Batting Cages') {
+                return L.marker(latlng, {
+                    icon: battingCagesIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
         },
 
     });
@@ -628,6 +634,9 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             if(Math.abs(labelRotation) > 75) {roads_labels_class = 'road_labels1_vert'};
             if(Math.abs(labelRotation) < 75) {roads_labels_class = 'road_labels1_hor'};
             var roadLabelHtml = '<div class="'+ roads_labels_class +'" style="transform: Rotate('+ labelRotation + 'deg);">' + streetName +'</div>'
+            if(streetName == 'Grand Central Avenue') {
+                roadLabelHtml = '<div class="'+ roads_labels_class +'" style="transform: Rotate('+ labelRotation + 'deg);width:max-content; padding-bottom:8px">' + streetName +'</div>'
+            }
             var roadDivIcon = L.divIcon({
                 iconSize: [110],
                 iconAnchor: [55,6],
@@ -679,9 +688,13 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             if(Math.abs(labelRotation) > 75) {roads_labels_class = 'road_labels2_vert'};
             if(Math.abs(labelRotation) < 75) {roads_labels_class = 'road_labels2_hor'};
             var roadLabelHtml = '<div class="'+ roads_labels_class + '" style="transform: Rotate('+ labelRotation + 'deg);">' + streetName2 +'</div>'
+            if(streetName2 == 'Grand Central Avenue') {
+                roadLabelHtml = '<div class="'+ roads_labels_class +'" style="transform: Rotate('+ labelRotation + 'deg);width:max-content; padding-bottom:25px">' + streetName2 +'</div>'
+            }
             var roadDivIcon = L.divIcon({
                 iconSize: [110],
                 iconAnchor: [55,6],
+                direction: 'center',
                 html: roadLabelHtml
                      
             })
