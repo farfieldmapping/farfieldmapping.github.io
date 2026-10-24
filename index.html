@@ -55,7 +55,10 @@
         padding:0;
         margin: 0;
     }
-    .mapTitle {
+    @media screen and (max-width: 600px) {
+    .mapTitle { display: none; }
+}
+        .mapTitle {
         padding: 6px 8px;
         line-height: 1.4;
         font-family: 'Oregano';
@@ -65,7 +68,7 @@
         border: solid 8px #986F9B;
         border-radius: 5px;
         height: fit-content;
-        width: 325px;
+        width: 325px; 
     }
     .mapTitle h2 {
         margin: 5px 0 5px;
@@ -690,6 +693,9 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             var roadLabelHtml = '<div class="'+ roads_labels_class + '" style="transform: Rotate('+ labelRotation + 'deg);">' + streetName2 +'</div>'
             if(streetName2 == 'Grand Central Avenue') {
                 roadLabelHtml = '<div class="'+ roads_labels_class +'" style="transform: Rotate('+ labelRotation + 'deg);width:max-content; padding-bottom:25px">' + streetName2 +'</div>'
+            }
+            if(streetName2 == 'Washington Avenue') {
+                roadLabelHtml = '<div class="'+ roads_labels_class +'" style="transform: Rotate('+ labelRotation + 'deg);width:max-content; padding-bottom:12px">' + streetName2 +'</div>'
             }
             var roadDivIcon = L.divIcon({
                 iconSize: [110],
