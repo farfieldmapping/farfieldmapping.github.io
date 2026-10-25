@@ -36,19 +36,7 @@
         padding: 0;
         margin: 0;
     }
-    header {
-        background-color: cornsilk;
-        padding: 0; 
-        top:0;
-        bottom:95%;
-        text-align: left;
-        font-size: 35px;
-        color: black;
-        
-    }
-    #header {
-        border: solid 5px #986F9B;
-    }
+    
     #map {
         width: 100%;
         height: 100%;
@@ -58,11 +46,11 @@
     @media screen and (max-width: 600px) {
     .mapTitle { display: none; }
 }
-        .mapTitle {
+    .mapTitle {
         padding: 6px 8px;
         line-height: 1.4;
         font-family: 'Oregano';
-        background-color:#f8f8f8 !important;
+        background-color:/*#f8f8f8*/ cornsilk !important;
         color: #444444 !important;
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         border: solid 8px #986F9B;
@@ -83,6 +71,35 @@
         font-family: 'Josefin Sans';
         text-align: justify;
     }
+
+    .closebtn {
+        position:fixed;
+        color:black;
+        top: 10px;
+        right: 25px;
+        font-size: 24px;
+        margin-left: 50px;
+        text-decoration: none;
+    }
+    .titlebtn {
+        padding: 4px 6px;
+        font-family: 'Oregano';
+        background-color:#986F9B;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        /*border: solid 8px #986F9B;*/
+        border-radius: 5px;
+        height: fit-content;
+        width: fit-content; 
+        margin: 0;
+        text-align: center;
+        /*line-height: 1;*/
+        font-size: 18px;
+        font-weight: normal;
+        color:cornsilk;
+        display: none;
+        cursor:pointer;
+    }
+
 </style>
 
 <body>
@@ -138,33 +155,17 @@
             });
         }//highlightLayer.bringToFront();
     }
-        /*
-        var title = new L.Control({'position':'topright'});
-        title.onAdd = function (map) {
-            this._div = L.DomUtil.create('div', 'mapTitle');
-            this.update();
-            return this._div;
-        };
-        title.update = function () {
-            var title = '<h2>Seaside Heights, New Jersey<br>c. 1960</h2>';
-            var info = '<p>This interactive web map attempts to recreate\
-                the spatial layout of mid-20th century Seaside Heights and\
-                depict the locations that made the borough a special place for so many.</p>';
-            var attribution = '<p id="attribution">Created by Far Field Mapping (2026).'
-            this._div.innerHTML = title + info + attribution;
-        };
-        title.addTo(map);
-        */
         var container = document.createElement('div');
         container.className = 'mapTitle';
         container.style.overflow = 'hidden';
-        container.style.padding = '6px 8px';
+        var closeBtn = '<a href="javascript:void(0)" id="closebtn" class="closebtn">🗙</a>';
+        var openBtn = '<a href="javascript:void(0)" id="openbtn" class="openbtn">⯅</a>';
         var title = '<h2>Seaside Heights, New Jersey<br>c. 1960</h2>';
         var info = '<p>This interactive web map attempts to recreate\
                     the spatial layout of mid-20th century Seaside Heights and\
                     depict the locations that made the borough a special place for so many.</p>';
         var attribution = '<p id="attribution">Created by Far Field Mapping (2026).'
-        var html = title + info + attribution;
+        var html = closeBtn + title + info + attribution;
 
         container.innerHTML = html;
 
@@ -181,7 +182,39 @@
 
             }
         }
-        addTitle()
+       addTitle()
+       var titleBtn = document.createElement('div');
+        titleBtn.className = 'titlebtn';
+        titleBtn.style.overflow = 'hidden';
+        titleBtn.innerHTML = '<span>&#9432;</span>'//'<span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" role="none" focusable="false" class="jimu-svg jimu-icon mx-0 svg-component app-root-emotion-cache-ltr-1x3mof4-SVG-root-Icon-root" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6.5 7.5A.5.5 0 0 1 7 7h1.5v4.5h1a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1h1V8H7a.5.5 0 0 1-.5-.5"></path><path fill="currentColor" fill-rule="evenodd" d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16m0-1A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"></path></svg></span>'
+       
+        function addTitleBtn() {
+            if (window.map && window.L && L.Control) {
+                var ctrl = L.control({ position: 'topright' });
+                ctrl.onAdd = function () { return titleBtn; };
+                ctrl.addTo(map);
+                // prevent clicks/scrolls inside this control from propagating to the map
+                if (L && L.DomEvent) {
+                    if (L.DomEvent.disableClickPropagation) L.DomEvent.disableClickPropagation(titleBtn);
+                    if (L.DomEvent.disableScrollPropagation) L.DomEvent.disableScrollPropagation(titleBtn);
+                }
+
+            }
+        }
+        addTitleBtn()
+        container.getElementsByClassName("closebtn")[0]
+            .addEventListener("click",function(){
+                container.style.display = 'none';
+                titleBtn.style.display = 'block';
+                //container.querySelector('.openbtn').style.display = 'block'
+            } 
+        )
+        
+        titleBtn.addEventListener("click",function(){
+                container.style.display = 'block'
+                titleBtn.style.display = 'none'
+            } 
+        )
         
         /*
         if (document.readyState === 'complete' || document.readyState === 'interactive') addToMap();
@@ -747,7 +780,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     //map.addLayer(layer_OSM);
 
     //--------- Municipality Labels
-     map.createPane('pane_municipal_labels');
+    map.createPane('pane_municipal_labels');
     map.getPane('pane_municipal_labels').style.zIndex = 409;
     map.getPane('pane_municipal_labels').style['mix-blend-mode'] = 'normal';
     
