@@ -97,7 +97,7 @@
             box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4)!important;
             border-radius: 4px;
         }
-        .leaflet-touch .leaflet-control-layers,
+        /*.leaflet-touch .leaflet-control-layers,*/
         .leaflet-touch .leaflet-bar,
         .leaflet-control-search,
         .leaflet-control-measure {
@@ -161,7 +161,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
-            background-color: #f8f8f8 !important;
+            background-color: cornsilk; /* #f8f8f8 !important;*/
             color: #444444 !important;
 
 		}

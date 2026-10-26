@@ -144,7 +144,6 @@
     })
         .setMaxBounds([[39.955000, -74.09300], [39.932594, -74.040000]])
         .setView([39.941594, -74.071202], 16);
-
     var highlightLayer;
     function highlightFeature(e) {
         highlightLayer = e.target;
@@ -884,7 +883,7 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 */
     var overlaysTree = [
-            {label: "Seaside Today", layer: layer_OSM},
+            {label: '<span style="font-family:josefin sans">Seaside Today</span>', layer: layer_OSM},
             ]	
         var lay = L.control.layers.tree(null, overlaysTree,{
             position: 'topright',
