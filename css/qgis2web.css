@@ -70,7 +70,7 @@
         .leaflet-touch .leaflet-control-geocoder-icon,
         .leaflet-control-search .search-button,
          .leaflet-control-measure {
-            background-color: #f8f8f8 !important;
+            background-color: #f8f8f8 /*!important*/;
             border-radius: 0px !important;
             color: #444444 !important;
         }
@@ -161,7 +161,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
-            background-color: cornsilk; /* #f8f8f8 !important;*/
+            background-color: #f8f8f8 /*!important*/;
             color: #444444 !important;
 
 		}
