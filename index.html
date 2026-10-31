@@ -476,18 +476,24 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                 };
             //var AddressString = Address.split(',')[0];            
             var Description = feature.properties['Desc'];
+            var thereToday = feature.properties['Today'];
             var markerPopup = 
                 '<div style="font-family:Josefin Sans;"><h2 style="font-size:16px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
-                '<table>'
+                '<table style=border-spacing:5px;">'
                 if (Address) markerPopup += 
                     '<tr>\
                         <td style="vertical-align:top;"><strong>Address</strong></td>\
-                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + addressString(Address) + '</td>\
+                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;padding-left:0px;">' + addressString(Address) + '</td>\
                     </tr>'
                 if (Description) markerPopup += 
                     '<tr>\
                         <td style="vertical-align:top;"><strong>Description</strong></td>\
-                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + Description + '</td>\
+                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;padding-left:0px;">' + Description + '</td>\
+                    </tr>'
+                if (thereToday) markerPopup += 
+                    '<tr>\
+                        <td style="vertical-align:top;"><strong>What'+"'s " + '<br>There Now</strong></td>\
+                        <td style="vertical-align: top; font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;padding-left:0px;">' + thereToday + '</td>\
                     </tr>'
                 + '</table></div>';
             var markerPopupMinWidth = 120;
@@ -625,23 +631,28 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                     return street + '<br>' + cityState + ', ' + zip
                 };
             var Description = feature.properties['Desc'];
-
+            var thereToday = feature.properties['Today'];
             var placesDivIcon = L.divIcon({
                 iconSize: [110],
                 iconAnchor: placesAnchor,
                 html: placesLabelHtml})    
             var markerPopup = 
-                 '<div style="font-family:Josefin Sans;"><h2 style="font-size:16px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
-                '<table>'
+                '<div style="font-family:Josefin Sans;"><h2 style="font-size:16px; font-weight:bold; text-align:center; padding-bottom:0px;">' + Name + '</h2>' +
+                '<table style=border-spacing:5px;">'
                 if (Address) markerPopup += 
                     '<tr>\
                         <td style="vertical-align:top;"><strong>Address</strong></td>\
-                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + addressString(Address) + '</td>\
+                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;padding-left:0px;">' + addressString(Address) + '</td>\
                     </tr>'
                 if (Description) markerPopup += 
                     '<tr>\
                         <td style="vertical-align:top;"><strong>Description</strong></td>\
-                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;">' + Description + '</td>\
+                        <td style="font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;padding-left:0px;">' + Description + '</td>\
+                    </tr>'
+                if (thereToday) markerPopup += 
+                    '<tr>\
+                        <td style="vertical-align:top;"><strong>What'+"'s " + '<br>There Now</strong></td>\
+                        <td style="vertical-align: top; font-size:12px; font-weight:normal;text-align:left;padding-bottom:0px;padding-left:0px;">' + thereToday + '</td>\
                     </tr>'
                 + '</table></div>';
             var markerPopupMinWidth = 120;
