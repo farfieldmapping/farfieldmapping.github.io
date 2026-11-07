@@ -56,6 +56,7 @@
         border-radius: 5px;
         height: fit-content;
         width: 350px; 
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
     }
     .mapTitle h2 {
         margin: 5px 0 5px;
@@ -151,11 +152,20 @@
         zoomIn.backgroundColor = 'cornsilk'
         zoomIn.fontFamily = 'oregano';
         zoomIn.fontSize = '28px';
+        //zoomIn.border = 'solid red 2px'
+        zoomIn.borderRadius = '20px'
+        zoomIn.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.2)';
         var zoomOut = document.getElementsByClassName("leaflet-control-zoom-out")[0].style;
         zoomOut.backgroundColor = 'cornsilk';
         zoomOut.fontFamily = 'oregano';
         zoomOut.fontSize = '28px';
+        zoomOut.borderRadius = '20px'
+        zoomOut.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.2)';
 
+        var zoomBox = document.getElementsByClassName("leaflet-control-zoom leaflet-bar leaflet-control")[0].style;
+        zoomBox.backgroundColor = 'transparent'
+        zoomBox.border = 'none';
+        zoomBox.boxShadow = 'none'
 
     }
     zoomControl();
@@ -926,7 +936,9 @@ function overlaysTree(){
         
         });
        lay.addTo(map);
-       document.getElementsByClassName("leaflet-control-layers leaflet-control-layers-expanded leaflet-control")[0].style.backgroundColor = 'cornsilk';
+       var layerControl = document.getElementsByClassName("leaflet-control-layers leaflet-control-layers-expanded leaflet-control")[0].style;
+        layerControl.backgroundColor = 'cornsilk'
+        layerControl.boxShadow = '0 3px 14px rgba(0, 0, 0, 0.4);'
        setBounds();
 
     }
