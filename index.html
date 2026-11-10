@@ -152,20 +152,22 @@
         zoomIn.backgroundColor = 'cornsilk'
         zoomIn.fontFamily = 'oregano';
         zoomIn.fontSize = '28px';
-        //zoomIn.border = 'solid red 2px'
+        zoomIn.border = '3px solid #986F9B';
         zoomIn.borderRadius = '20px'
-        zoomIn.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.2)';
+        zoomIn.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.1)';
+        zoomIn.marginBottom = '2px';
         var zoomOut = document.getElementsByClassName("leaflet-control-zoom-out")[0].style;
         zoomOut.backgroundColor = 'cornsilk';
         zoomOut.fontFamily = 'oregano';
         zoomOut.fontSize = '28px';
+        zoomOut.border = '3px solid #986F9B'
         zoomOut.borderRadius = '20px'
-        zoomOut.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.2)';
+        zoomOut.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.1)';
 
         var zoomBox = document.getElementsByClassName("leaflet-control-zoom leaflet-bar leaflet-control")[0].style;
         zoomBox.backgroundColor = 'transparent'
         zoomBox.border = 'none';
-        zoomBox.boxShadow = 'none'
+        zoomBox.boxShadow = 'none';
 
     }
     zoomControl();
