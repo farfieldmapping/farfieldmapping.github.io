@@ -34,8 +34,7 @@ var json_Places = {
         { "type": "Feature", "properties": { "fid": 29, "Name": "Police Station", "Type": "Police Station", "Established": null, "Closed": null, "Address": null, "Notes": null, "Desc": null, "Today": null }, "geometry": { "type": "Point", "coordinates": [-74.073943156823447, 39.943888887936694] } },
         { "type": "Feature", "properties": { "fid": 30, "Name": "1801 Boulevard", "Type": "Building", "Established": null, "Closed": null, "Address": "1801 Boulevard, Seaside Park, NJ 08752", "Notes": "Office of Clayton Sterling", "Desc": "Office of Clayton Sterling", "Today": null }, "geometry": { "type": "Point", "coordinates": [-74.074821481000328, 39.935936671074437] } },
         { "type": "Feature", "properties": { "fid": 31, "Name": "Bat-em-Out", "Type": "Batting Cages", "Established": null, "Closed": null, "Address": null, "Notes": null, "Desc": "Batting cages next to Flo's Drive-In", "Today": "CVS Pharmacy" }, "geometry": { "type": "Point", "coordinates": [-74.072248240428803, 39.948595014222039] } },
-        { "type": "Feature", "properties": { "fid": 32, "Name": "Seaside Park Borough Hall", "Type": "Borough Hall", "Established": null, "Closed": null, "Address": null, "Notes": null, "Desc": null, "Today": null }, "geometry": { "type": "Point", "coordinates": [-74.07297822956875, 39.935030422858055] } }
-
-
+        { "type": "Feature", "properties": { "fid": 31, "Name": "First National Bank", "Type": "Borough Hall", "Established": null, "Closed": null, "Address": null, "Notes": null, "Desc": null, "Today": null }, "geometry": { "type": "Point", "coordinates": [-74.074035, 39.940812] } },
+        { "type": "Feature", "properties": { "fid": 31, "Name": "McDevitt's Hardware Store", "Type": "Store", "Established": null, "Closed": null, "Address": "308 Boulevard, Seaside Heights, NJ 08751", "Notes": null, "Desc": null, "Today": null }, "geometry": { "type": "Point", "coordinates": [-74.073853168399, 39.939485206539] } },
     ]
 }

@@ -152,7 +152,7 @@
         zoomIn.backgroundColor = 'cornsilk'
         zoomIn.fontFamily = 'oregano';
         zoomIn.fontSize = '28px';
-        zoomIn.border = '3px solid #986F9B';
+        zoomIn.border = '2px solid #986F9B';
         zoomIn.borderRadius = '20px'
         zoomIn.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.1)';
         zoomIn.marginBottom = '2px';
@@ -160,7 +160,7 @@
         zoomOut.backgroundColor = 'cornsilk';
         zoomOut.fontFamily = 'oregano';
         zoomOut.fontSize = '28px';
-        zoomOut.border = '3px solid #986F9B'
+        zoomOut.border = '2px solid #986F9B'
         zoomOut.borderRadius = '20px'
         zoomOut.boxShadow = '2px 2px 2px 2px rgba(0, 0, 0, 0.1)';
 
@@ -634,6 +634,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                 if (placesName == 'Barnegat Ice Plant') {placesAnchor = [130,40]};
                 if (placesName == 'Harold' + "'" +'s Sno Ball Ices') {placesAnchor = [-20,15]};
                 if (placesName == 'Funtown Gift Shop') {placesAnchor = [45,40]};
+                if (placesName == 'First National Bank') {placesAnchor = [140,40]};
             var Name = String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString();
             var Address = feature.properties['Address'];
                 function addressString(value){
@@ -920,7 +921,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
     alert("You clicked the map at " + e.latlng);
     }
 
-map.on('click', onMapClick);
+    map.on('click', onMapClick);
 */
 function overlaysTree(){
     var overlaysTree = [
