@@ -465,6 +465,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         taffyStandIcon = new PlaceIcon({ iconUrl: 'icons/shopping_confectionery.svg'}),
         souvenirShopIcon = new PlaceIcon({ iconUrl: 'icons/shopping_clothes.svg'}),
         battingCagesIcon = new PlaceIcon({ iconUrl: 'icons/sport_baseball.svg'});
+        BusStationIcon = new PlaceIcon({ iconUrl: 'icons/transport_bus_stop.svg'});
 
 
     map.createPane('pane_places');
@@ -580,7 +581,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                     icon: churchIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
-            if (type == 'Water Tower') {
+            if (type == 'Tower') {
                 return L.marker(latlng, {
                     icon: waterTowerIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
@@ -603,6 +604,11 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             if (type == 'Batting Cages') {
                 return L.marker(latlng, {
                     icon: battingCagesIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
+            if (type == 'Bus Station') {
+                return L.marker(latlng, {
+                    icon: BusStationIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
         },
@@ -635,6 +641,7 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
                 if (placesName == 'Harold' + "'" +'s Sno Ball Ices') {placesAnchor = [-20,15]};
                 if (placesName == 'Funtown Gift Shop') {placesAnchor = [45,40]};
                 if (placesName == 'First National Bank') {placesAnchor = [140,40]};
+                if (placesName == 'Ampere Hotel and Bar') {placesAnchor = [150,40]};
             var Name = String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString();
             var Address = feature.properties['Address'];
                 function addressString(value){
