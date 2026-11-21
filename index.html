@@ -463,10 +463,12 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
         waterTowerIcon = new PlaceIcon({ iconUrl: 'icons/poi_tower_water.svg'}),
         boroughHallIcon = new PlaceIcon({ iconUrl: 'icons/tourist_museum.svg'}),
         taffyStandIcon = new PlaceIcon({ iconUrl: 'icons/shopping_confectionery.svg'}),
-        souvenirShopIcon = new PlaceIcon({ iconUrl: 'icons/shopping_clothes.svg'}),
+        souvenirShopIcon = new PlaceIcon({ iconUrl: 'icons/shopping_gift.svg'}),
         battingCagesIcon = new PlaceIcon({ iconUrl: 'icons/sport_baseball.svg'});
-        BusStationIcon = new PlaceIcon({ iconUrl: 'icons/transport_bus_stop.svg'});
-
+        busStationIcon = new PlaceIcon({ iconUrl: 'icons/transport_bus_stop.svg'});
+        hardwareStoreIcon = new PlaceIcon({ iconUrl: 'icons/shopping_diy.svg'});
+        bankIcon = new PlaceIcon({ iconUrl: 'icons/money_bank2.svg'});
+        departmentStoreIcon = new PlaceIcon({ iconUrl: 'icons/shopping_clothes.svg'});
 
     map.createPane('pane_places');
     map.getPane('pane_places').style.zIndex = 403;
@@ -608,7 +610,22 @@ map.createPane('pane_ocean_svg').style['mix-blend-mode'] = 'normal';
             }
             if (type == 'Bus Station') {
                 return L.marker(latlng, {
-                    icon: BusStationIcon
+                    icon: busStationIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
+            if (type == 'Hardware Store') {
+                return L.marker(latlng, {
+                    icon: hardwareStoreIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
+            if (type == 'Bank') {
+                return L.marker(latlng, {
+                    icon: bankIcon
+                }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
+            }
+            if (type == 'Department Store') {
+                return L.marker(latlng, {
+                    icon: departmentStoreIcon
                 }).bindPopup(markerPopup,{minWidth: markerPopupMinWidth})//.bindTooltip(name,{permanent: true})
             }
         },
